@@ -1,2 +1,2 @@
 # AutismoSimulator
-Two autist one car
+Two autists one car
