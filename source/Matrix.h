@@ -6,5 +6,5 @@ struct Matrix{
 
     Matrix(unsigned int rows=1, unsigned int columns=1);
 
-    
-}
+
+};
