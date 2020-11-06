@@ -59,6 +59,4 @@ int main() {
         std::cout << "timestep: " << i << std::endl;
         std::cout << "x: " << x << "  " << "y: " << y << std::endl;
     }
-
-    return 0;
 }

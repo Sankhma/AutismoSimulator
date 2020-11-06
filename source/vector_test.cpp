@@ -12,11 +12,9 @@ int main(){
     double dot = Vector3::dot(a, b);
     Vector3 cross = Vector3::cross(a, b);
 
-    std::cout << "Adding: x: " << add.x << " y: " << add.y << std::endl;
-    std::cout << "Subtracting: x: " << sub.x << " y: " << sub.y << std::endl;
-    std::cout << "Multiplying by a scalar: x: " << mul.x << " y: " << mul.y << std::endl;
+    std::cout << "Adding: x: " << add.x << " y: " << add.y << " z: " << add.z << std::endl;
+    std::cout << "Subtracting: x: " << sub.x << " y: " << sub.y << " z: " << sub.z << std::endl;
+    std::cout << "Multiplying by a scalar: x: " << mul.x << " y: " << mul.y << " z: " << mul.z << std::endl;
     std::cout << "Dot Product: " << dot << std::endl;
-    std::cout << "Cross Product: x: " << cross.x << " y: " << cross.y << std::endl;
-
-    return 1;
+    std::cout << "Cross Product: x: " << cross.x << " y: " << cross.y << " z: " << cross.z << std::endl;
 }
