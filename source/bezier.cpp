@@ -24,7 +24,7 @@ Bezier2::Bezier2(Vector2 point1, Vector2 point2, Vector2 point3, Vector2 point4)
 Vector2 Bezier2::GenerateVertex(const Bezier2& bezier2, const double& t){
     if(bezier2.m_points == 2){
         Vector2 result;
-        result = t * bezier.point2 + bezier.point1 * (1 - t);
+        result = t * bezier2.point2 + bezier2.point1 * (1 - t);
         return result;
     }
 
