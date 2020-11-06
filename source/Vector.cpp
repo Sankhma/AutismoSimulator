@@ -1,6 +1,6 @@
 #include "Vector.h"
 
-Vector2::Vector2(double x, double y) : x(x), y(y) {}
+Vector2::Vector2(const double &x, const double &y) : x(x), y(y) {}
 
 Vector2 Vector2::operator+(const Vector2 &v1) const {
 	return {this->x + v1.x, this->y + v1.y};

@@ -3,7 +3,7 @@
 struct Vector2{
     double x, y;
 
-    Vector2(double x=0., double y=0.);
+    Vector2(const double &x=0, const double &y=0);
 
     Vector2 operator+(const Vector2&) const;
     Vector2 operator-(const Vector2&) const;
