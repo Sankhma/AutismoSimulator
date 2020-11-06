@@ -1,62 +1,38 @@
 #include <iostream>
 
-struct Vector2
-{
-    double x;
-    double y;
-    Vector2(double x = 0., double y = 0.);
-    Vector2 operator-(const Vector2&) const;
-    Vector2 operator*(const double&) const;
-    Vector2 operator+(const Vector2&) const;
-};
+#include "Vector.h"
+#include "Bezier.h"
 
-Vector2::Vector2(double x, double y){
-    this->x = x;
-    this->y = y;
-}
+int main(){
+    std::cout << "-============ Bezier2 test =============-" << std::endl;
+	{
+        int steps = 20;
 
-Vector2 Vector2::operator-(const Vector2& vec) const{
-    Vector2 result;
-    result.x = (this->x - vec.x);
-    result.y = (this->y - vec.y);
-    return result;
-}
+		Vector2 p0 = {0, 0};
+        Vector2 p1 = {1, 1};
+        Vector2 p2 = {10, -10};
+        Vector2 p3 = {3.14, 2.73};
 
-Vector2 Vector2::operator*(const double& lambda) const{
-    Vector2 result;
-    result.x = (this->x * lambda);
-    result.y = (this->y * lambda);
-    return result;
-}
+        Bezier2 b0 = {p0, p1};
+        Bezier2 b1 = {p0, p1, p2};
+        Bezier2 b2 = {p0, p1, p2, p3};
 
-Vector2 Vector2::operator+(const Vector2& vec) const{
-    Vector2 result;
-    result.x = (this->x + vec.x);
-    result.y = (this->y + vec.y);
-    return result;
-}
+        std::cout << "Bezier2 for 2 points, steps=20" << std::endl;
+        for(int i=0; i <= steps; i++){
+            Vector2 temp = Bezier2::GenerateVertex(b0, i / double(steps));
+            std::cout << "[ " << temp.x << ", " << temp.y << " ]" << std::endl;
+        }
 
-int main() {
-    Vector2 p1 = Vector2(0, 0);
-    Vector2 p2 = Vector2(10, 10);
-    Vector2 p3 = Vector2(20, 0);
+        std::cout << "Bezier2 for 3 points, steps=20" << std::endl;
+        for(int i=0; i <= steps; i++){
+            Vector2 temp = Bezier2::GenerateVertex(b1, i / double(steps));
+            std::cout << "[ " << temp.x << ", " << temp.y << " ]" << std::endl;
+        }
 
-    Vector2 vec1 = p2 - p1;
-    Vector2 vec2 = p3 - p2;
-
-    int timesteps = 1000;
-    for(int i=0; i <= timesteps; i++){
-        double lambda = double(i) / double(timesteps);
-
-        Vector2 point1 = p1 + vec1 * lambda;
-        Vector2 point2 = p2 + vec2 * lambda;
-
-        Vector2 vec = point2 - point1;
-
-        double x = (point1 + vec * lambda).x;
-        double y = (point1 + vec * lambda).y;
-
-        std::cout << "timestep: " << i << std::endl;
-        std::cout << "x: " << x << "  " << "y: " << y << std::endl;
-    }
+        std::cout << "Bezier2 for 4 points, steps=20" << std::endl;
+        for(int i=0; i <= steps; i++){
+            Vector2 temp = Bezier2::GenerateVertex(b2, i / double(steps));
+            std::cout << "[ " << temp.x << ", " << temp.y << " ]" << std::endl;
+        }
+	}
 }

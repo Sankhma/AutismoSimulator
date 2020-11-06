@@ -1,4 +1,5 @@
 #include "Bezier.h"
+#include "Vector.h"
 
 Bezier2::Bezier2(Vector2 point1, Vector2 point2){
     this->m_points = 2;
@@ -28,13 +29,13 @@ Vector2 Bezier2::GenerateVertex(const Bezier2& bezier2, const double& t){
         return result;
     }
 
-    if(bezier.m_points == 3){
+    if(bezier2.m_points == 3){
         Vector2 result;
-        result = bezier2.point3 * t * t + bezier.point2 * 2 * t * (1 - t) + bezier2.point1 * (1 - t) * (1 - t);
+        result = bezier2.point3 * t * t + bezier2.point2 * 2 * t * (1 - t) + bezier2.point1 * (1 - t) * (1 - t);
         return result;
     }
 
-    if(bezier.m_points == 4){
+    if(bezier2.m_points == 4){
         Vector2 result;
         result = bezier2.point4 * t * t * t + bezier2.point3 * 3 * (1 - t) * t * t + 3 * (1 - t) * (1 - t) * t + bezier2.point1 * (1 - t) * (1 - t) * (1 - t);
         return result;
