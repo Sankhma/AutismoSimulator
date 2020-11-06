@@ -40,4 +40,6 @@ Vector2 Bezier2::GenerateVertex(const Bezier2& bezier2, const double& t){
         result = bezier2.point4 * t * t * t + bezier2.point3 * 3 * (1 - t) * t * t + 3 * (1 - t) * (1 - t) * t + bezier2.point1 * (1 - t) * (1 - t) * (1 - t);
         return result;
     }
+    //TODO number of points > 4
+    return Vector2(0, 0);
 }
