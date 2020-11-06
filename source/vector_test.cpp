@@ -11,6 +11,7 @@ int main(){
 		Vector3 add = a + b;
 		Vector3 sub = a - b;
 		Vector3 mul = b * 0.3;
+		Vector3 mul1 = 0.3 * b;
 		double dot = Vector3::dot(a, b);
 		Vector3 cross = Vector3::cross(a, b);
 
@@ -19,6 +20,10 @@ int main(){
 		std::cout << "Multiplying by a scalar: x: " << mul.x << " y: " << mul.y << " z: " << mul.z << std::endl;
 		std::cout << "Dot Product: " << dot << std::endl;
 		std::cout << "Cross Product: x: " << cross.x << " y: " << cross.y << " z: " << cross.z << std::endl;
+
+		std::cout << "Testing commutitivity of multiplication by scalar:" << std::endl;
+		std::cout << "Vector3 * lambda: x: " << mul.x << " y: " << mul.y << " z: " << mul.z << std::endl;
+		std::cout << "lambda * Vector3: x: " << mul1.x << " y: " << mul1.y << " z: " << mul1.z << std::endl;
 	}
 
 	std::cout << "-============ Vector2 test =============-" << std::endl;

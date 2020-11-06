@@ -1,5 +1,7 @@
 #include "Vector.h"
 
+//-============ Vector2 =============-
+
 Vector2::Vector2(const double &x, const double &y) : x(x), y(y) {}
 
 Vector2 Vector2::operator+(const Vector2 &v1) const {
@@ -10,28 +12,19 @@ Vector2 Vector2::operator-(const Vector2 &v1) const {
 	return {this->x - v1.x, this->y - v1.y};
 }
 
-Vector2 Vector2::operator*(const double &lambda) const {
-	return {this->x * lambda, this->y * lambda};
+Vector2 operator*(const Vector2& vec, const double lambda){
+	return {vec.x * lambda, vec.y * lambda};
+}
+
+Vector2 operator*(const double lambda, const Vector2& vec){
+	return vec * lambda;
 }
 
 double Vector2::dot(const Vector2 &v1, const Vector2 &v2) {
 	return v1.x * v2.x + v1.y * v2.y;
 }
 
-// struct Vector3{
-//     double x;
-//     double y;
-//     double z;
-
-//     Vector3(double x=0., double y=0., double z=0.);
-
-//     Vector3 operator+(const Vector3&) const;
-//     Vector3 operator-(const Vector3&) const;
-//     Vector3 operator*(const double&) const;
-
-//     double dot(const Vector3&, const Vector3&) const;
-//     Vector3 cross(const Vector3&, const Vector3&) const;
-// };
+//-============ Vector3 =============-
 
 Vector3::Vector3(double x, double y, double z){
     this->x = x;
@@ -55,12 +48,16 @@ Vector3 Vector3::operator-(const Vector3& vec) const{
     return result;
 }
 
-Vector3 Vector3::operator*(const double& lambda) const{
+Vector3 operator*(const Vector3& vec, const double lambda){
     Vector3 result;
-    result.x = this->x * lambda;
-    result.y = this->y * lambda;
-    result.z = this->z * lambda;
+    result.x = vec.x * lambda;
+    result.y = vec.y * lambda;
+    result.z = vec.z * lambda;
     return result;
+}
+
+Vector3 operator*(const double lambda, const Vector3& vec){
+    return vec * lambda;
 }
 
 double Vector3::dot(const Vector3& vec1, const Vector3& vec2){
