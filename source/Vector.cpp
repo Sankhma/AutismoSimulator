@@ -1,5 +1,23 @@
 #include "Vector.h"
 
+Vector2::Vector2(double x, double y) : x(x), y(y) {}
+
+Vector2 Vector2::operator+(const Vector2 &v1) const {
+	return {this->x + v1.x, this->y + v1.y};
+}
+
+Vector2 Vector2::operator-(const Vector2 &v1) const {
+	return {this->x - v1.x, this->y - v1.y};
+}
+
+Vector2 Vector2::operator*(const double &lambda) const {
+	return {this->x * lambda, this->y * lambda};
+}
+
+double Vector2::dot(const Vector2 &v1, const Vector2 &v2) {
+	return v1.x * v2.x + v1.y * v2.y;
+}
+
 // struct Vector3{
 //     double x;
 //     double y;
