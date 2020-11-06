@@ -1,4 +1,7 @@
 #pragma once
+#include <cstddef>
+
+struct LinkedList;
 
 struct Matrix {
     unsigned int rows;
@@ -12,12 +15,12 @@ struct Matrix {
 	void transpose();
 	static Matrix transpose(const Matrix &);
 
-	LinkedList operator()(const size_t &, const size_t &);
+	LinkedList operator()(const std::size_t &, const std::size_t &);
 	// LinkedList operator[](const size_t &);
 };
 
 struct LinkedList {
-	double value;
+	double value = 0;
 	LinkedList *next = nullptr;
 
 	// LinkedList operator[](const size_t &);
