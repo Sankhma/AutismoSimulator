@@ -42,3 +42,11 @@ Matrix::Matrix(unsigned int rows, unsigned int columns) : rows(rows), columns(co
 		data.addNode(0);
 	}
 }
+
+double& Matrix::operator()(const int& row, const int& col) const{
+	Node* cell = data.head;
+	for(int i=0; i < row * columns + col; i++){
+		cell = cell->next;
+	}
+	return cell->value;
+}
