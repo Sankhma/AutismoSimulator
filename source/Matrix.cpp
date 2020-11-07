@@ -1,16 +1,6 @@
 #include "Matrix.h"
 
 
-Matrix::Matrix(unsigned int rows, unsigned int columns) : rows(rows), columns(columns) {
-	data = new LinkedList();
-	for (int i = 0; i < rows * columns; i++)
-	{
-		data->addNode(i);
-		std::cout << "Added " << i << std::endl;
-	}
-}
-
-
 Node::Node() : value(0), next(nullptr) {}
 Node::Node(const double &value) : value(value), next(nullptr) {}
 
@@ -28,23 +18,27 @@ void LinkedList::addNode(const double &value) {
 }
 
 
-Pair::Pair(Node *elem, const unsigned int &n) : elem(elem), n(n) {}
+Node Matrix::operator[](const int &index) {
+	Node *cell = data.head;
+	for (int i = 0; i < index * columns; i++) {
+		cell = cell->next;
+	}
+	return *cell;
+}
 
-Pair Matrix::operator[](const int &index) const {
-	// if (index >= rows) throw std::out_of_range("Out of range.");
-	Node *cell = data->head;
+// Coś tu jest nie tak, bo nie mogę zmieniać wartości w pierwszej kolumnie (m[x][0])
+double& Node::operator[](const int &index) {
+	Node *cell = this;
 	for (int i = 0; i < index; i++) {
 		cell = cell->next;
 	}
-	return Pair(cell, rows);
+	return cell->value;
 }
 
-double Pair::operator[](const int &index) {
-	Node *cell = this->elem;
-	unsigned int rows = this->n;
-	// if (index >= columns) throw std::out_of_range("Out of range.");
-	for (int i = 0; i < (index * rows); i++) {
-		cell = cell->next;
+
+Matrix::Matrix(unsigned int rows, unsigned int columns) : rows(rows), columns(columns) {
+	data = LinkedList();
+	for (int i = 0; i < rows * columns; i++) {
+		data.addNode(0);
 	}
-	return cell->value;
 }

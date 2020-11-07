@@ -1,27 +1,6 @@
 #pragma once
 #include <cstddef>
-#include <stdexcept>
 #include <iostream>
-
-
-struct Node;
-struct LinkedList;
-struct Pair;
-
-
-struct Matrix {
-    unsigned int rows;
-    unsigned int columns;
-	LinkedList *data;
-
-    Matrix(unsigned int rows = 1, unsigned int columns = 1);
-
-	void transpose();
-	static Matrix transpose(const Matrix &);
-
-	// LinkedList operator()(const std::size_t &, const std::size_t &);
-	Pair operator[](const int &) const;
-};
 
 
 struct Node {
@@ -30,6 +9,8 @@ struct Node {
 
 	Node();
 	Node(const double &);
+
+	double& operator[](const int &);
 };
 
 
@@ -42,11 +23,15 @@ struct LinkedList {
 };
 
 
-struct Pair {
-	Node* elem;
-	unsigned int n;
+struct Matrix {
+    unsigned int rows;
+    unsigned int columns;
+	LinkedList data;
 
-	Pair(Node*, const unsigned int &);
+    Matrix(unsigned int rows = 1, unsigned int columns = 1);
 
-	double operator[](const int &);
+	void transpose();
+	static Matrix transpose(const Matrix &);
+
+	Node operator[](const int &);
 };
