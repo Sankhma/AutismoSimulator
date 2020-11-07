@@ -1,40 +1,50 @@
 #include "Matrix.h"
 
-Matrix::Matrix(unsigned int rows, unsigned int columns) : rows(rows), columns(columns), root(new LinkedList()) {
-	LinkedList *cell = root;
-	for (int i = 0; i < rows * columns - 1; i++)
+
+Matrix::Matrix(unsigned int rows, unsigned int columns) : rows(rows), columns(columns) {
+	data = new LinkedList();
+	for (int i = 0; i < rows * columns; i++)
 	{
-		cell->next = new LinkedList();
-		cell = cell->next;
+		data->addNode(i);
+		std::cout << "Added " << i << std::endl;
 	}
 }
 
-LinkedList::LinkedList() : value(0), next(nullptr) {}
-LinkedList::LinkedList(const double &value) : value(value), next(nullptr) {}
-LinkedList::LinkedList(const double &value, LinkedList *next) : value(value), next(next) {}
 
-Pair::Pair(LinkedList *elem, const unsigned int &n) : elem(elem), n(n) {}
+Node::Node() : value(0), next(nullptr) {}
+Node::Node(const double &value) : value(value), next(nullptr) {}
+
+
+LinkedList::LinkedList() : head(nullptr), tail(nullptr) {}
+
+void LinkedList::addNode(const double &value) {
+	Node *tmp = new Node(value);
+
+	if (head == nullptr) {
+		head = tail = tmp;
+	} else {
+		tail = tail->next = tmp;
+	}
+}
+
+
+Pair::Pair(Node *elem, const unsigned int &n) : elem(elem), n(n) {}
 
 Pair Matrix::operator[](const int &index) const {
 	// if (index >= rows) throw std::out_of_range("Out of range.");
-	LinkedList *cell = root;
+	Node *cell = data->head;
 	for (int i = 0; i < index; i++) {
 		cell = cell->next;
 	}
-	return Pair(cell, columns);
+	return Pair(cell, rows);
 }
 
 double Pair::operator[](const int &index) {
-	std::cout << "Getting cell in column " << index << "..." << std::endl;
-	LinkedList *cell = this->elem;
-	std::cout << "Assigned this->elem to *cell." << std::endl;
-	unsigned int columns = this->n;
-	std::cout << "Assigned this->n to columns." << std::endl;
+	Node *cell = this->elem;
+	unsigned int rows = this->n;
 	// if (index >= columns) throw std::out_of_range("Out of range.");
-	for (int i = 0; i < index * columns; i++) {
+	for (int i = 0; i < (index * rows); i++) {
 		cell = cell->next;
-		std::cout << "Moved to next." << std::endl;
 	}
-	std::cout << "End of the loop." << std::endl;
 	return cell->value;
 }
