@@ -3,13 +3,16 @@
 #include <stdexcept>
 #include <iostream>
 
+
+struct Node;
 struct LinkedList;
 struct Pair;
+
 
 struct Matrix {
     unsigned int rows;
     unsigned int columns;
-	LinkedList *root;
+	LinkedList *data;
 
     Matrix(unsigned int rows = 1, unsigned int columns = 1);
 
@@ -20,20 +23,30 @@ struct Matrix {
 	Pair operator[](const int &) const;
 };
 
-struct LinkedList {
-	double value;
-	LinkedList *next;
 
-	LinkedList();
-	LinkedList(const double &);
-	LinkedList(const double &, LinkedList *);
+struct Node {
+	double value;
+	Node *next;
+
+	Node();
+	Node(const double &);
 };
 
+
+struct LinkedList {
+	Node *head, *tail;
+
+	LinkedList();
+
+	void addNode(const double &);
+};
+
+
 struct Pair {
-	LinkedList* elem;
+	Node* elem;
 	unsigned int n;
 
-	Pair(LinkedList*, const unsigned int &);
+	Pair(Node*, const unsigned int &);
 
 	double operator[](const int &);
 };
