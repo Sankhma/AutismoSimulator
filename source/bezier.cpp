@@ -22,6 +22,11 @@ Bezier2::Bezier2(Vector2 point1, Vector2 point2, Vector2 point3, Vector2 point4)
     this->point4 = point4;
 }
 
+// template<typename First, typename ... Vectors>
+// Bezier2::Bezier2(First arg, const Vectors& ... rest){
+
+// }
+
 Vector2 Bezier2::GenerateVertex(const Bezier2& bezier2, const double& t){
     if(bezier2.m_points == 2){
         Vector2 result;
