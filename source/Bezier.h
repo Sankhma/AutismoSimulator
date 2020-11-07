@@ -11,8 +11,6 @@ private:
     Vector2 point3;
     Vector2 point4;
     //TODO - dynamic number of points
-
-    LinkedList* root;
      
 
 public:
