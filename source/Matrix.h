@@ -21,11 +21,12 @@ struct Matrix {
 };
 
 struct LinkedList {
-	double value = 0;
-	LinkedList *next = nullptr;
+	double value;
+	LinkedList *next;
 
 	LinkedList();
 	LinkedList(const double &);
+	LinkedList(const double &, LinkedList *);
 };
 
 struct Pair {

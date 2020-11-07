@@ -1,28 +1,17 @@
 #include "Matrix.h"
 
-Matrix::Matrix(unsigned int rows, unsigned int columns) : rows(rows), columns(columns) {
-	std::cout << "Constructing " << rows << " x " << columns << " matrix." << std::endl;
+Matrix::Matrix(unsigned int rows, unsigned int columns) : rows(rows), columns(columns), root(new LinkedList()) {
 	LinkedList *cell = root;
-	std::cout << "cell = root" << std::endl;
 	for (int i = 0; i < rows * columns - 1; i++)
 	{
-		std::cout << "rows * columns = " << rows * columns << std::endl;
 		cell->next = new LinkedList();
-		std::cout << "New LinkedList pointer." << std::endl;
 		cell = cell->next;
-		std::cout << "cell = cell->next. End of iteration." << std::endl;
 	}
-	std::cout << "End of loop." << std::endl;
-	
 }
 
-// LinkedList Matrix::operator()(const std::size_t &rowIndex, const std::size_t &colIndex) {
-// 	LinkedList *cell = root;
-// 	for (std::size_t index = 0, end = colIndex + rowIndex * columns; index < end; index++) {
-// 		cell = cell->next;
-// 	}
-// 	return *cell;
-// }
+LinkedList::LinkedList() : value(0), next(nullptr) {}
+LinkedList::LinkedList(const double &value) : value(value), next(nullptr) {}
+LinkedList::LinkedList(const double &value, LinkedList *next) : value(value), next(next) {}
 
 Pair::Pair(LinkedList *elem, const unsigned int &n) : elem(elem), n(n) {}
 
@@ -36,18 +25,16 @@ Pair Matrix::operator[](const int &index) const {
 }
 
 double Pair::operator[](const int &index) {
+	std::cout << "Getting cell in column " << index << "..." << std::endl;
 	LinkedList *cell = this->elem;
+	std::cout << "Assigned this->elem to *cell." << std::endl;
 	unsigned int columns = this->n;
+	std::cout << "Assigned this->n to columns." << std::endl;
 	// if (index >= columns) throw std::out_of_range("Out of range.");
 	for (int i = 0; i < index * columns; i++) {
 		cell = cell->next;
+		std::cout << "Moved to next." << std::endl;
 	}
+	std::cout << "End of the loop." << std::endl;
 	return cell->value;
 }
-
-LinkedList::LinkedList() {
-	value = 0;
-	next = nullptr;
-}
-
-LinkedList::LinkedList(const double &value) : value(value), next(nullptr) {}
