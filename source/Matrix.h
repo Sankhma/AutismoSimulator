@@ -2,7 +2,6 @@
 #include <cstddef>
 #include <iostream>
 
-
 struct Node {
 	double value;
 	Node *next;
@@ -13,7 +12,6 @@ struct Node {
 	double& operator[](const int &);
 };
 
-
 struct LinkedList {
 	Node *head, *tail;
 
@@ -21,7 +19,6 @@ struct LinkedList {
 
 	void addNode(const double &);
 };
-
 
 struct Matrix {
     unsigned int rows;
