@@ -30,9 +30,6 @@ int main() {
 	m4[1][0] = 4, m4[1][1] = 5, m4[1][2] = 6;
 	m4[2][0] = 7, m4[2][1] = 8, m4[2][2] = 9;
 
-	LinkedList data = LinkedList();
-	data[9] = 420;
-
 	std::cout << "m4:\n";
 	displayMatrix(m4);
 
@@ -45,6 +42,11 @@ int main() {
 
 	std::cout << "m5:\n";
 	displayMatrix(m5);
+
+	m4.transpose();
+	std::cout << "m4 transposed:\n";
+	displayMatrix(m4);
+
 
 	return 0;
 }
