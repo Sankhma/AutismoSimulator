@@ -54,7 +54,7 @@ void Bezier2::addPoint(const Vector2& Point){
     this->points.push_back(Point);
     #ifdef _DEBUG_ADD
         std::cout << "Added point: " << Point << std::endl;
-     #endif
+    #endif
     this->m_points++;
 }
 
