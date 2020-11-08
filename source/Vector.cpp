@@ -1,4 +1,5 @@
 #include "Vector.h"
+#include <iostream>
 
 //-============ Vector2 =============-
 
@@ -10,6 +11,11 @@ Vector2 Vector2::operator+(const Vector2 &v1) const {
 
 Vector2 Vector2::operator-(const Vector2 &v1) const {
 	return {this->x - v1.x, this->y - v1.y};
+}
+
+std::ostream& operator<<(std::ostream& os, const Vector2& vec){
+    os << "[" << vec.x << ", " << vec.y << "]";
+    return os;
 }
 
 Vector2 operator*(const Vector2& vec, const double lambda){
@@ -46,6 +52,11 @@ Vector3 Vector3::operator-(const Vector3& vec) const{
     result.y = this->y - vec.y;
     result.z = this->z - vec.z;
     return result;
+}
+
+std::ostream& operator<<(std::ostream& os, const Vector3& vec){
+    os << "[" << vec.x << ", " << vec.y << ", " << vec.z << "]";
+    return os;
 }
 
 Vector3 operator*(const Vector3& vec, const double lambda){

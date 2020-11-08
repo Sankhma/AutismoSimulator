@@ -1,5 +1,6 @@
 #pragma once
 
+#include<iostream>
 
 struct Vector2{
     double x, y;
@@ -8,6 +9,7 @@ struct Vector2{
 
     Vector2 operator+(const Vector2&) const;
     Vector2 operator-(const Vector2&) const;
+    friend std::ostream& operator<<(std::ostream&, const Vector2&);
 
     static double dot(const Vector2&, const Vector2&);
 };
@@ -24,6 +26,7 @@ struct Vector3{
 
     Vector3 operator+(const Vector3&) const;
     Vector3 operator-(const Vector3&) const;
+    friend std::ostream& operator<<(std::ostream&, const Vector3&);
 
     static double dot(const Vector3&, const Vector3&);
     static Vector3 cross(const Vector3&, const Vector3&);
