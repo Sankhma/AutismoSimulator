@@ -64,9 +64,10 @@ double& Node::operator[](const int &index) {
 // no use pls
 void Matrix::transpose() {
 	LinkedList old = data.copy();
-	Node *n1 = old.head->next;
-	for (unsigned int i = 1; i < rows * columns - 1; i++) {
-		n1->value = old[i * columns];
+	Node *n1 = data.head->next;
+	unsigned int iters = rows * columns - 1;
+	for (unsigned int i = 1; i < iters; i++) {
+		n1->value = old[(i * columns) % iters];
 	}
 	unsigned int temp = rows;
 	rows = columns;
