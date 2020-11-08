@@ -9,6 +9,8 @@ struct Node {
 	Node();
 	Node(const double &);
 
+	static void swapValues( Node *,  Node *);
+
 	double& operator[](const int &);
 };
 
@@ -18,6 +20,9 @@ struct LinkedList {
 	LinkedList();
 
 	void addNode(const double &);
+	LinkedList copy() const;
+
+	double& operator[](const int &);
 };
 
 struct Matrix {
@@ -32,5 +37,5 @@ struct Matrix {
 
 	double& operator()(const int&, const int&) const;
 
-	Node operator[](const int &);
+	Node& operator[](const int &) const;
 };
