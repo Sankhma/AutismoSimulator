@@ -1,50 +1,98 @@
+#define _DEBUG_ADD
+#define _DEBUG_VA
+#define _DEBUG_VERT
+
+#include <iostream>
+#include <cmath>
+#include <stdarg.h>
+
 #include "Bezier.h"
 #include "Vector.h"
+#include "Math.h"
 
-Bezier2::Bezier2(Vector2 point1, Vector2 point2){
-    this->m_points = 2;
-    this->point1 = point1;
-    this->point2 = point2;
-}
-
-Bezier2::Bezier2(Vector2 point1, Vector2 point2, Vector2 point3){
-    this->m_points = 3;
-    this->point1 = point1;
-    this->point2 = point2;
-    this->point3 = point3;
-}
-
-Bezier2::Bezier2(Vector2 point1, Vector2 point2, Vector2 point3, Vector2 point4){
-    this->m_points = 4;
-    this->point1 = point1;
-    this->point2 = point2;
-    this->point3 = point3;
-    this->point4 = point4;
-}
-
-// template<typename First, typename ... Vectors>
-// Bezier2::Bezier2(First arg, const Vectors& ... rest){
-
+// Bezier2::Bezier2(Vector2 point1, Vector2 point2){
+//     this->m_points = 2;
+//     this->point1 = point1;
+//     this->point2 = point2;
 // }
 
+// Bezier2::Bezier2(Vector2 point1, Vector2 point2, Vector2 point3){
+//     this->m_points = 3;
+//     this->point1 = point1;
+//     this->point2 = point2;
+//     this->point3 = point3;
+// }
+
+// Bezier2::Bezier2(Vector2 point1, Vector2 point2, Vector2 point3, Vector2 point4){
+//     this->m_points = 4;
+//     this->point1 = point1;
+//     this->point2 = point2;
+//     this->point3 = point3;
+//     this->point4 = point4;
+// }
+
+Bezier2::Bezier2(const std::vector<Vector2>& points){
+    for(int i=0; i < points.size(); i++){
+        this->addPoint(points[i]);
+    }
+}
+
+Bezier2::Bezier2(const int& size, ...){
+    va_list vl;
+    va_start(vl, size);
+    for(int i=0; i < size; i++){
+        Vector2* ptr = va_arg(vl, Vector2*);
+        #ifdef _DEBUG_VA
+            std::cout << "Vector2 @ " << ptr << " with value " << *ptr << std::endl;
+        #endif
+        this->addPoint(*ptr);
+    }
+    va_end(vl);
+}
+
+void Bezier2::addPoint(const Vector2& Point){
+    this->points.push_back(Point);
+    #ifdef _DEBUG_ADD
+        std::cout << "Added point: " << Point << std::endl;
+    #endif
+    this->m_points++;
+}
+
 Vector2 Bezier2::GenerateVertex(const Bezier2& bezier2, const double& t){
+    Vector2 result = Vector2();
+
     if(bezier2.m_points == 2){
-        Vector2 result;
-        result = t * bezier2.point2 + bezier2.point1 * (1 - t);
-        return result;
+        result = t * bezier2.points[1] + bezier2.points[0] * (1 - t);
     }
 
     if(bezier2.m_points == 3){
-        Vector2 result;
-        result = bezier2.point3 * t * t + bezier2.point2 * 2 * t * (1 - t) + bezier2.point1 * (1 - t) * (1 - t);
-        return result;
+        result = bezier2.points[2] * std::pow(t, 2) + bezier2.points[1] * 2 * t * (1 - t) + bezier2.points[0] * std::pow((1 - t), 2);
     }
 
     if(bezier2.m_points == 4){
-        Vector2 result;
-        result = bezier2.point4 * t * t * t + bezier2.point3 * 3 * (1 - t) * t * t + 3 * (1 - t) * (1 - t) * t + bezier2.point1 * (1 - t) * (1 - t) * (1 - t);
-        return result;
+        result = bezier2.points[3] * std::pow(t, 3) + bezier2.points[2] * 3 * (1 - t) * std::pow(t, 2) + bezier2.points[1] * 3 * std::pow((1 - t), 2) * t + bezier2.points[0] * std::pow((1 - t), 3);
+    }
+
+//dobranoc
+    if(bezier2.m_points > 4){
+        Vector2 temp = Vector2(0, 0);
+        for(int i=0; i < bezier2.m_points; i++){
+            if(t ==  0 || t == 1){
+                temp = bezier2.points[i];
+            } else{
+                temp = bezier2.points[i] * std::pow(t, i) * std::pow((1 - t), bezier2.m_points - 1 - i);
+            }
+            #ifdef _DEBUG_VERT
+                std::cout << temp << "\t" << t << "\t" << Math::binomial(bezier2.m_points, i) << std::endl;
+            #endif
+            temp = temp * Math::binomial(bezier2.m_points, i);
+            result = result + temp;
+        }
     }
     //TODO number of points > 4
-    return Vector2(0, 0);
+
+    #ifdef _DEBUG_VERT
+            std::cout << "Generated Vertex @ " << result << std::endl;
+    #endif
+    return result;
 }
