@@ -1,6 +1,10 @@
-#define _DEBUG
+#define _DEBUG_ADD
+#define _DEBUG_VA
+#define _DEBUG_VERT
+
 #include <iostream>
 #include <cmath>
+#include <stdarg.h>
 
 #include "Bezier.h"
 #include "Vector.h"
@@ -33,9 +37,22 @@ Bezier2::Bezier2(const std::vector<Vector2>& points){
     }
 }
 
+Bezier2::Bezier2(const int& size, ...){
+    va_list vl;
+    va_start(vl, size);
+    for(int i=0; i < size; i++){
+        Vector2* ptr = va_arg(vl, Vector2*);
+        #ifdef _DEBUG_VA
+            std::cout << "Vector2 @ " << ptr << " with value " << *ptr << std::endl;
+        #endif
+        this->addPoint(*ptr);
+    }
+    va_end(vl);
+}
+
 void Bezier2::addPoint(const Vector2& Point){
     this->points.push_back(Point);
-    #ifdef _DEBUG
+    #ifdef _DEBUG_ADD
         std::cout << "Added point: " << Point << std::endl;
      #endif
     this->m_points++;
@@ -65,14 +82,16 @@ Vector2 Bezier2::GenerateVertex(const Bezier2& bezier2, const double& t){
             } else{
                 temp = bezier2.points[i] * std::pow(t, i) * std::pow((1 - t), bezier2.m_points - 1 - i);
             }
-            std::cout << temp << "\t" << t << "\t" << Math::binomial(bezier2.m_points, i) << std::endl;
+            #ifdef _DEBUG_VERT
+                std::cout << temp << "\t" << t << "\t" << Math::binomial(bezier2.m_points, i) << std::endl;
+            #endif
             temp = temp * Math::binomial(bezier2.m_points, i);
             result = result + temp;
         }
     }
     //TODO number of points > 4
 
-    #ifdef _DEBUG
+    #ifdef _DEBUG_VERT
             std::cout << "Generated Vertex @ " << result << std::endl;
     #endif
     return result;
