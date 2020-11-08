@@ -13,6 +13,24 @@ Vector2 Vector2::operator-(const Vector2 &v1) const {
 	return {this->x - v1.x, this->y - v1.y};
 }
 
+Vector2& Vector2::operator+=(const Vector2& vec){
+    this->x += vec.x;
+    this->y += vec.y;
+    return *this;
+}
+
+Vector2& Vector2::operator-=(const Vector2& vec){
+    this->x -= vec.x;
+    this->y -= vec.y;
+    return *this;
+}
+
+Vector2& Vector2::operator*=(const double& lambda){
+    this->x *= lambda;
+    this->y *= lambda;
+    return *this;
+}
+
 std::ostream& operator<<(std::ostream& os, const Vector2& vec){
     os << "[" << vec.x << ", " << vec.y << "]";
     return os;
@@ -52,6 +70,27 @@ Vector3 Vector3::operator-(const Vector3& vec) const{
     result.y = this->y - vec.y;
     result.z = this->z - vec.z;
     return result;
+}
+
+Vector3& Vector3::operator+=(const Vector3& vec){
+    this->x += vec.x;
+    this->y += vec.y;
+    this->z += vec.z;
+    return *this;
+}
+
+Vector3& Vector3::operator-=(const Vector3& vec){
+    this->x -= vec.x;
+    this->y -= vec.y;
+    this->z -= vec.z;
+    return *this;
+}
+
+Vector3& Vector3::operator*=(const double& lambda){
+    this->x *= lambda;
+    this->y *= lambda;
+    this->z *= lambda;
+    return *this;
 }
 
 std::ostream& operator<<(std::ostream& os, const Vector3& vec){
