@@ -9,7 +9,7 @@ struct Node {
 	Node();
 	Node(const double &);
 
-	static void swapValues( Node *,  Node *);
+	static void swapValues(Node *, Node *);
 
 	double& operator[](const int &);
 };

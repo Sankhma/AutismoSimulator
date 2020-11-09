@@ -5,7 +5,7 @@ Node::Node() : value(0), next(nullptr) {}
 
 Node::Node(const double &value) : value(value), next(nullptr) {}
 
-void Node::swapValues( Node *n1,  Node *n2) {
+void Node::swapValues(Node *n1, Node *n2) {
 	auto temp = n1->value;
 	n1->value = n2->value;
 	n2->value = temp;
@@ -68,6 +68,7 @@ void Matrix::transpose() {
 	unsigned int iters = rows * columns - 1;
 	for (unsigned int i = 1; i < iters; i++) {
 		n1->value = old[(i * columns) % iters];
+		n1 = n1->next;
 	}
 	unsigned int temp = rows;
 	rows = columns;

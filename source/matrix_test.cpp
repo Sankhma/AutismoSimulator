@@ -43,10 +43,13 @@ int main() {
 	std::cout << "m5:\n";
 	displayMatrix(m5);
 
-	m4.transpose();
-	std::cout << "m4 transposed:\n";
-	displayMatrix(m4);
+	m5.transpose();
+	std::cout << "m5 transposed:\n";
+	displayMatrix(m5);
 
+	m5.transpose();
+	std::cout << "m5 transposed again:\n";
+	displayMatrix(m5);
 
 	return 0;
 }
