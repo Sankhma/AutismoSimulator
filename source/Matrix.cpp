@@ -61,7 +61,14 @@ double& Node::operator[](const int &index) {
 	return cell->value;
 }
 
-// no use pls
+
+Matrix::Matrix(unsigned int rows, unsigned int columns) : rows(rows), columns(columns) {
+	data = LinkedList();
+	for (int i = 0; i < rows * columns; i++) {
+		data.addNode(0);
+	}
+}
+
 void Matrix::transpose() {
 	LinkedList old = data.copy();
 	Node *n1 = data.head->next;
@@ -75,13 +82,18 @@ void Matrix::transpose() {
 	columns = temp;
 }
 
-Matrix::Matrix(unsigned int rows, unsigned int columns) : rows(rows), columns(columns) {
-	data = LinkedList();
-	for (int i = 0; i < rows * columns; i++) {
-		data.addNode(0);
+Matrix Matrix::operator*(const Matrix &other) const {
+	if (columns != other.rows) throw std::runtime_error("The numbers of columns of the left Matrix and rows of the right Matrix are not equal.");
+	Matrix result = Matrix(rows, other.columns);
+	for (unsigned int y = 0; y < result.rows; y++) {
+		for (unsigned int x = 0; x < result.columns; x++) {
+			for (unsigned int i = 0; i < columns; i++) {
+				result[y][x] += (*this)[y][i] * other[i][x];
+			}
+		}
 	}
+	return result;
 }
-
 
 double& Matrix::operator()(const int& row, const int& col) const{
 	Node* cell = data.head;

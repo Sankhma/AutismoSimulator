@@ -33,9 +33,10 @@ struct Matrix {
     Matrix(unsigned int rows = 1, unsigned int columns = 1);
 
 	void transpose();
-	static Matrix transpose(const Matrix &);
+	// static Matrix transpose(const Matrix &);
+
+	Matrix operator*(const Matrix &) const;
 
 	double& operator()(const int&, const int&) const;
-
 	Node& operator[](const int &) const;
 };
