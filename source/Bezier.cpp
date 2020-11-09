@@ -124,7 +124,6 @@ Bezier3::Bezier3(const int &size, ...) {
 	va_end(vl);
 }
 
-
 void Bezier3::addPoint(const Vector3 &point) {
 	points.push_back(point);
 	#ifdef _DEBUG_ADD
