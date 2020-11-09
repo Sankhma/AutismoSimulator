@@ -1,6 +1,7 @@
 #define _DEBUG_ADD
 #define _DEBUG_VA
 #define _DEBUG_VERT
+// #define _DEBUG_GV2
 
 #include <iostream>
 #include <cmath>
@@ -63,4 +64,41 @@ Vector2 Bezier2::GenerateVertex(const Bezier2& bezier2, const double& t){
             std::cout << "Generated Vertex @ " << result << std::endl;
     #endif
     return result;
+}
+
+Vector2 Bezier2::GenerateVertex2(const Bezier2 &bezier2, const double &t) {
+	std::vector<Vector2> points = bezier2.points;
+	#ifdef _DEBUG_GV2
+		std::cout << "Generating a vertex with:\n\tvertices: ";
+		for (const Vector2 &v : points) std::cout << v << ", ";
+		std::cout << "\n\tt = " << t << "\nEntering the outer loop...\n\n";
+	#endif
+	for (int i = 0; i < bezier2.m_points - 1; i++) {
+		#ifdef _DEBUG_GV2
+			std::cout << "Iteration " << i << "...\nEntering the inner loop...\n\n";
+		#endif
+		for (int j = 0; j < points.size() - 1; j++) {
+			#ifdef _DEBUG_GV2
+				std::cout << "(" << points[j + 1] << " - " << points[j] << ") * " << t;
+			#endif
+			points[j] += (points[j + 1] - points[j]) * t;
+			#ifdef _DEBUG_GV2
+				std::cout << " = " << points[j] << '\n';
+			#endif
+		}
+		#ifdef _DEBUG_GV2
+			std::cout << "\nFinished the inner loop.\n";
+			std::cout << "Removing the last vertex in points...\n\n";
+		#endif
+		points.pop_back();
+	}
+	#ifdef _DEBUG_GV2
+		std::cout << "Finished the outer loop.\n";
+	#endif
+	std::cout << "Generated vertex @ " << points[0] << '\n';
+	return points[0];
+}
+
+unsigned int Bezier2::getSize() const {
+	return m_points;
 }

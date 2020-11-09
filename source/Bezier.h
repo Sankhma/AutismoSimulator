@@ -17,4 +17,6 @@ public:
     Bezier2(const int& size, ...);
 
     static Vector2 GenerateVertex(const Bezier2& bezier2, const double& t);
+    static Vector2 GenerateVertex2(const Bezier2 &, const double &);
+	unsigned int getSize() const;
 };
