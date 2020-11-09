@@ -102,3 +102,64 @@ Vector2 Bezier2::GenerateVertex2(const Bezier2 &bezier2, const double &t) {
 unsigned int Bezier2::getSize() const {
 	return m_points;
 }
+
+// -=============== Bezier3 ==================-
+
+Bezier3::Bezier3(const std::vector<Vector3> &points) {
+	for (int i = 0; i < points.size(); i++) {
+		addPoint(points[i]);
+	}
+}
+
+Bezier3::Bezier3(const int &size, ...) {
+	va_list vl;
+	va_start(vl, size);
+	for (int i = 0; i < size; i++) {
+		Vector3 *ptr = va_arg(vl, Vector3*);
+		#ifdef _DEBUG_VA
+			std::cout << "Vector3 @ " << ptr << " with value " << *ptr << '\n';
+		#endif
+		addPoint(*ptr);
+	}
+	va_end(vl);
+}
+
+
+void Bezier3::addPoint(const Vector3 &point) {
+	points.push_back(point);
+	#ifdef _DEBUG_ADD
+		std::cout << "Added point: " << point << '\n';
+	#endif
+	m_points++;
+}
+
+Vector3 Bezier3::GenerateVertex(const Bezier3 &bezier3, const double &t){
+    Vector3 result = Vector3();
+
+	switch (bezier3.m_points) {
+		case 2:
+        	result = bezier3.points[1] * t + bezier3.points[0] * (1 - t);
+			break;
+		case 3:
+        	result = bezier3.points[2] * std::pow(t, 2) + bezier3.points[1] * 2 * t * (1 - t) + bezier3.points[0] * std::pow((1 - t), 2);
+			break;
+		case 4:
+        	result = bezier3.points[3] * std::pow(t, 3) + bezier3.points[2] * 3 * (1 - t) * std::pow(t, 2) + bezier3.points[1] * 3 * std::pow((1 - t), 2) * t + bezier3.points[0] * std::pow((1 - t), 3);
+			break;
+		default:
+			for (int i = 0; i <= bezier3.m_points - 1; i++) {
+				double bbp = Math::binomial(bezier3.m_points - 1, i) * std::pow((1 - t), bezier3.m_points - 1 - i) * pow(t, i);
+				result += bezier3.points[i] * bbp;
+			}
+			break;
+	}
+
+    #ifdef _DEBUG_VERT
+		std::cout << "Generated Vertex @ " << result << '\n';
+    #endif
+    return result;
+}
+
+unsigned int Bezier3::getSize() const {
+	return m_points;
+}

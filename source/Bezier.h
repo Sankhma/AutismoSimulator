@@ -20,3 +20,17 @@ public:
     static Vector2 GenerateVertex2(const Bezier2 &, const double &);
 	unsigned int getSize() const;
 };
+
+class Bezier3 {
+    unsigned int m_points = 0;
+    std::vector<Vector3> points;
+
+public:
+    void addPoint(const Vector3 &);
+	
+    Bezier3(const std::vector<Vector3> &);
+    Bezier3(const int &, ...);
+
+    static Vector3 GenerateVertex(const Bezier3 &, const double &);
+	unsigned int getSize() const;
+};
