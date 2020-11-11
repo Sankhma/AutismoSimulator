@@ -1,4 +1,5 @@
 #include "Matrix.h"
+#include <iomanip>
 
 
 Node::Node() : value(0), next(nullptr) {}
@@ -123,4 +124,26 @@ double& Matrix::operator()(const int& row, const int& col) const{
 		cell = cell->next;
 	}
 	return cell->value;
+}
+
+std::ostream& operator<<(std::ostream &os, const Matrix &matrix) {
+	Node *node = matrix.data.head;
+	short min = 0, max = 0;
+	for (unsigned i = matrix.rows * matrix.columns; i > 0; i--) {
+		if (node->value > max) max = node->value;
+		if (node->value < min) min = node->value;
+		node = node->next;
+	}
+	short minLen = std::to_string(min).size(), maxLen = std::to_string(max).size();
+	short digits = minLen > maxLen ? minLen : maxLen;
+
+	node = matrix.data.head;
+	os << '[';
+	for (unsigned i = matrix.rows * matrix.columns; i > 0; i--) {
+		if (i % matrix.columns == 0 && i != matrix.rows * matrix.columns) os << ' ';
+		os << std::setw(digits) << node->value;
+		node = node->next;
+		os << ((i != 1) ? (((i - 1) % matrix.columns == 0) ? "\n" : ", ") : "]");
+	}
+	return os;
 }

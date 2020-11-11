@@ -41,4 +41,5 @@ struct Matrix {
 
 	double& operator()(const int&, const int&) const;
 	Node& operator[](const int &) const;
+	friend std::ostream& operator<<(std::ostream &, const Matrix &);
 };
