@@ -54,5 +54,8 @@ int main() {
 	std::cout << "m5 * m4:\n";
 	displayMatrix(m5 * m4);
 
+	std::cout << "m4 + m4" << std::endl;
+	displayMatrix(m4 + m4);
+
 	return 0;
 }
