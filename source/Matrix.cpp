@@ -7,6 +7,7 @@ Node::Node() : value(0), next(nullptr) {}
 Node::Node(const double &value) : value(value), next(nullptr) {}
 
 void Node::swapValues(Node *n1, Node *n2) {
+	// change auto
 	auto temp = n1->value;
 	n1->value = n2->value;
 	n2->value = temp;
@@ -35,7 +36,7 @@ LinkedList LinkedList::copy() const {
 	return newList;
 }
 
-double& LinkedList::operator[](const int &index) {
+double& LinkedList::operator[](const unsigned int &index) {
 	if (head == nullptr) throw std::runtime_error("The LinkedList is empty.");
 	Node *node = head;
 	for (unsigned int i = 0; i < index; i++) {
@@ -46,17 +47,17 @@ double& LinkedList::operator[](const int &index) {
 }
 
 
-Node& Matrix::operator[](const int &index) const {
+Node& Matrix::operator[](const unsigned int &index) const {
 	Node *cell = data.head;
-	for (int i = 0; i < index * columns; i++) {
+	for (unsigned int i = 0; i < index * columns; i++) {
 		cell = cell->next;
 	}
 	return *cell;
 }
 
-double& Node::operator[](const int &index) {
+double& Node::operator[](const unsigned int &index) {
 	Node *cell = this;
-	for (int i = 0; i < index; i++) {
+	for (unsigned int i = 0; i < index; i++) {
 		cell = cell->next;
 	}
 	return cell->value;
@@ -65,7 +66,7 @@ double& Node::operator[](const int &index) {
 
 Matrix::Matrix(unsigned int rows, unsigned int columns) : rows(rows), columns(columns) {
 	data = LinkedList();
-	for (int i = 0; i < rows * columns; i++) {
+	for (unsigned int i = 0; i < rows * columns; i++) {
 		data.addNode(0);
 	}
 }
@@ -118,13 +119,13 @@ Matrix Matrix::operator-(const Matrix& other) const{
 	return result;
 }
 
-double& Matrix::operator()(const int& row, const int& col) const{
-	Node* cell = data.head;
-	for(int i=0; i < row * columns + col; i++){
-		cell = cell->next;
-	}
-	return cell->value;
-}
+// double& Matrix::operator()(const int& row, const int& col) const{
+// 	Node* cell = data.head;
+// 	for(int i=0; i < row * columns + col; i++){
+// 		cell = cell->next;
+// 	}
+// 	return cell->value;
+// }
 
 std::ostream& operator<<(std::ostream &os, const Matrix &matrix) {
 	Node *node = matrix.data.head;

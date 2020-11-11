@@ -11,7 +11,7 @@ struct Node {
 
 	static void swapValues(Node *, Node *);
 
-	double& operator[](const int &);
+	double& operator[](const unsigned int &);
 };
 
 struct LinkedList {
@@ -22,7 +22,7 @@ struct LinkedList {
 	void addNode(const double &);
 	LinkedList copy() const;
 
-	double& operator[](const int &);
+	double& operator[](const unsigned int &);
 };
 
 struct Matrix {
@@ -39,7 +39,7 @@ struct Matrix {
 	Matrix operator+(const Matrix&) const;
 	Matrix operator-(const Matrix&) const;
 
-	double& operator()(const int&, const int&) const;
-	Node& operator[](const int &) const;
+	// double& operator()(const unsigned int&, const unsigned int&) const;
+	Node& operator[](const unsigned int &) const;
 	friend std::ostream& operator<<(std::ostream &, const Matrix &);
 };
