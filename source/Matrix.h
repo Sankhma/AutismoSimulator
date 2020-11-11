@@ -37,6 +37,7 @@ struct Matrix {
 
 	Matrix operator*(const Matrix &) const;
 	Matrix operator+(const Matrix&) const;
+	Matrix operator-(const Matrix&) const;
 
 	double& operator()(const int&, const int&) const;
 	Node& operator[](const int &) const;
