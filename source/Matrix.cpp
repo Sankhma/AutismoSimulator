@@ -106,6 +106,17 @@ Matrix Matrix::operator+(const Matrix& other) const{
 	return result;
 }
 
+Matrix Matrix::operator-(const Matrix& other) const{
+	if(this->rows != other.rows || this->columns != other.columns) throw std::runtime_error("The Matrices are not of the same size. Subtraction is not defined.");	
+	Matrix result = Matrix(this->rows, this->columns);
+	for(unsigned int i=0; i < result.rows; i++){
+		for(unsigned int j=0; j < result.columns; j++){
+			result[i][j] = (*this)[i][j] - other[i][j];
+		}
+	}
+	return result;
+}
+
 double& Matrix::operator()(const int& row, const int& col) const{
 	Node* cell = data.head;
 	for(int i=0; i < row * columns + col; i++){
