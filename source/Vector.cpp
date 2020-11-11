@@ -1,5 +1,6 @@
 #include "Vector.h"
 #include <iostream>
+#include <cmath>
 
 //-============ Vector2 =============-
 
@@ -46,6 +47,11 @@ Vector2 operator*(const double lambda, const Vector2& vec){
 
 double Vector2::dot(const Vector2 &v1, const Vector2 &v2) {
 	return v1.x * v2.x + v1.y * v2.y;
+}
+
+double Vector2::angle(const Vector2& vec1, const Vector2& vec2){
+    double result = std::acos(Vector2::dot(vec1, vec2) / std::sqrt(Vector2::dot(vec1, vec1) * Vector2::dot(vec2, vec2)));
+    return result;
 }
 
 //-============ Vector3 =============-
@@ -119,5 +125,10 @@ Vector3 Vector3::cross(const Vector3& vec1, const Vector3& vec2){
     result.x = vec1.y * vec2.z - vec2.y * vec1.z;
     result.y = vec1.z * vec2.x - vec2.z * vec1.x;
     result.z = vec1.x * vec2.y - vec2.x * vec1.y;
+    return result;
+}
+
+double Vector3::angle(const Vector3& vec1, const Vector3& vec2){
+    double result = std::acos(Vector3::dot(vec1, vec2) / std::sqrt(Vector3::dot(vec1, vec1) * Vector3::dot(vec2, vec2)));
     return result;
 }

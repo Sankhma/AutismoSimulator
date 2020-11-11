@@ -15,6 +15,7 @@ struct Vector2{
     friend std::ostream& operator<<(std::ostream&, const Vector2&);
 
     static double dot(const Vector2&, const Vector2&);
+    static double angle(const Vector2&, const Vector2&);
 };
 
 Vector2 operator*(const Vector2& vec, const double lambda);
@@ -36,6 +37,7 @@ struct Vector3{
 
     static double dot(const Vector3&, const Vector3&);
     static Vector3 cross(const Vector3&, const Vector3&);
+    static double angle(const Vector3&, const Vector3&);
 };
 
 Vector3 operator*(const Vector3& vec, const double lambda);
