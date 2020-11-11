@@ -11,7 +11,7 @@ struct Node {
 
 	static void swapValues(Node *, Node *);
 
-	double& operator[](const unsigned int &);
+	double& operator[](const int &);
 };
 
 struct LinkedList {
@@ -22,7 +22,7 @@ struct LinkedList {
 	void addNode(const double &);
 	LinkedList copy() const;
 
-	double& operator[](const unsigned int &);
+	double& operator[](const int &);
 };
 
 struct Matrix {
@@ -39,7 +39,19 @@ struct Matrix {
 	Matrix operator+(const Matrix&) const;
 	Matrix operator-(const Matrix&) const;
 
-	// double& operator()(const unsigned int&, const unsigned int&) const;
-	Node& operator[](const unsigned int &) const;
+	double& operator()(const int&, const int&) const;
+	Node& operator[](const int &) const;
 	friend std::ostream& operator<<(std::ostream &, const Matrix &);
+};
+
+
+// Note: class with augement of only 1 column wide, might change that later on
+class AugmentedMatrix{
+	Matrix main;
+	Matrix augment;
+
+public:
+	AugmentedMatrix(const Matrix& main, const Matrix& augment);
+	AugmentedMatrix(const unsigned int& size);
+	AugmentedMatrix(const unsigned int& rows, const unsigned int& columns);
 };

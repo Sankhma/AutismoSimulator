@@ -2,17 +2,20 @@
 #include <iomanip>
 
 
+//-============ Node =============-
+
 Node::Node() : value(0), next(nullptr) {}
 
 Node::Node(const double &value) : value(value), next(nullptr) {}
 
 void Node::swapValues(Node *n1, Node *n2) {
-	// change auto
 	auto temp = n1->value;
 	n1->value = n2->value;
 	n2->value = temp;
 }
 
+
+//-============ LinkedList =============-
 
 LinkedList::LinkedList() : head(nullptr), tail(nullptr) {}
 
@@ -36,7 +39,7 @@ LinkedList LinkedList::copy() const {
 	return newList;
 }
 
-double& LinkedList::operator[](const unsigned int &index) {
+double& LinkedList::operator[](const int &index) {
 	if (head == nullptr) throw std::runtime_error("The LinkedList is empty.");
 	Node *node = head;
 	for (unsigned int i = 0; i < index; i++) {
@@ -47,26 +50,33 @@ double& LinkedList::operator[](const unsigned int &index) {
 }
 
 
-Node& Matrix::operator[](const unsigned int &index) const {
+//-============ Matrix =============-
+
+Node& Matrix::operator[](const int &index) const {
 	Node *cell = data.head;
-	for (unsigned int i = 0; i < index * columns; i++) {
+	for (int i = 0; i < index * columns; i++) {
 		cell = cell->next;
 	}
 	return *cell;
 }
 
-double& Node::operator[](const unsigned int &index) {
+
+//-============ Node =============-
+
+double& Node::operator[](const int &index) {
 	Node *cell = this;
-	for (unsigned int i = 0; i < index; i++) {
+	for (int i = 0; i < index; i++) {
 		cell = cell->next;
 	}
 	return cell->value;
 }
 
 
+//-============ Matrix =============-
+
 Matrix::Matrix(unsigned int rows, unsigned int columns) : rows(rows), columns(columns) {
 	data = LinkedList();
-	for (unsigned int i = 0; i < rows * columns; i++) {
+	for (int i = 0; i < rows * columns; i++) {
 		data.addNode(0);
 	}
 }
@@ -119,13 +129,13 @@ Matrix Matrix::operator-(const Matrix& other) const{
 	return result;
 }
 
-// double& Matrix::operator()(const int& row, const int& col) const{
-// 	Node* cell = data.head;
-// 	for(int i=0; i < row * columns + col; i++){
-// 		cell = cell->next;
-// 	}
-// 	return cell->value;
-// }
+double& Matrix::operator()(const int& row, const int& col) const{
+	Node* cell = data.head;
+	for(int i=0; i < row * columns + col; i++){
+		cell = cell->next;
+	}
+	return cell->value;
+}
 
 std::ostream& operator<<(std::ostream &os, const Matrix &matrix) {
 	Node *node = matrix.data.head;
@@ -147,4 +157,24 @@ std::ostream& operator<<(std::ostream &os, const Matrix &matrix) {
 		os << ((i != 1) ? (((i - 1) % matrix.columns == 0) ? "\n" : ", ") : "]");
 	}
 	return os;
+}
+
+
+//-============ AugmentedMatrix =============-
+
+AugmentedMatrix::AugmentedMatrix(const Matrix& main, const Matrix& augment){
+	if(main.columns > main.rows || main.rows != augment.rows) throw std::runtime_error("Main matrix has to represent a set of equation with 0 degrees of freedom. Augment matrix has to have same no. of rows as main.");
+	this->main = main;
+	this->augment = augment;
+}
+
+AugmentedMatrix::AugmentedMatrix(const unsigned int& size){
+	this->main = Matrix(size, size);
+	this->augment = Matrix(size, 1);
+}
+
+AugmentedMatrix::AugmentedMatrix(const unsigned int& rows, const unsigned int& columns){
+	if(columns > rows) throw std::runtime_error("Main matrix has to represent a set of equation with 0 degrees of freedom.");
+	this->main = Matrix(rows, columns);
+	this->augment = Matrix(rows, 1);
 }
