@@ -96,6 +96,16 @@ void Matrix::shuffleRows(const unsigned &index1, const unsigned &index2) {
 	// wtf
 }
 
+void Matrix::addRowToRow(const unsigned &sourceIndex, const unsigned &targetIndex, bool addition) {
+	Node *sourceNode = &(*this)[sourceIndex];
+	Node *targetNode = &(*this)[targetIndex];
+	for (unsigned i = 0; i < columns; i++) {
+		targetNode->value += sourceNode->value * (addition ? 1 : -1);
+		sourceNode = sourceNode->next;
+		targetNode = targetNode->next;
+	}
+}
+
 Node& Matrix::get(const unsigned &index) const {
 	Node *node = data.head;
 	for (unsigned i = 0; i < index; i++) {

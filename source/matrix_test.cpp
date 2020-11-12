@@ -50,10 +50,13 @@ int main() {
 		std::cout << m4.get(i).value << ", ";
 
 	std::cout << "\nm4:\n" << m4 << '\n';
-	m4.shuffleRows(0, 2);
-	std::cout << "m4 after shuffling rows 0 and 2:\n" << m4 << '\n';
-	m4.shuffleRows(1, 2);
-	std::cout << "m4 after shuffling rows 1 and 2:\n" << m4 << '\n';
+	m4.addRowToRow(0, 2);
+	std::cout << "\nm4 after adding row 0 to row 2:\n" << m4 << '\n';
+	m4.transpose();
+	m4.addRowToRow(2, 1);
+	std::cout << "\nm4 after transposing and adding row 2 to row 1:\n" << m4 << '\n';
+	m4.addRowToRow(1, 2, false);
+	std::cout << "\nm4 after subtracting row 1 from row 2:\n" << m4 << '\n';
 
 	return 0;
 }

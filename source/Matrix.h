@@ -52,6 +52,15 @@ struct Matrix {
 	void shuffleRows(const unsigned &index1, const unsigned &index2);
 
 	/**
+	 * Adds/subtracts one row to/from another one.
+	 * 
+	 * @param source The index of the row whose values are added.
+	 * @param target The index of the row whose values are added to.
+	 * @param addition Optional. If false, subtraction will be performed instead.
+	 */
+	void addRowToRow(const unsigned &sourceIndex, const unsigned &targetIndex, bool addition = true);
+
+	/**
 	 * Get the n-th cell of the matrix.
 	 * 
 	 * @param index Index of the wanted cell (left to right, top to bottom).
