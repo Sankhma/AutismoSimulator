@@ -49,7 +49,7 @@ double& LinkedList::operator[](const unsigned int &index) {
 
 Node& Matrix::operator[](const unsigned int &index) const {
 	Node *cell = data.head;
-	for (unsigned int i = 0; i < index * columns; i++) {
+	for (unsigned i = 0; i < index * columns; i++) {
 		cell = cell->next;
 	}
 	return *cell;
@@ -84,17 +84,24 @@ void Matrix::transpose() {
 	columns = temp;
 }
 
-Matrix Matrix::operator*(const Matrix &other) const {
-	if (columns != other.rows) throw std::runtime_error("The numbers of columns of the left Matrix and rows of the right Matrix are not equal.");
-	Matrix result = Matrix(rows, other.columns);
-	for (unsigned int y = 0; y < result.rows; y++) {
-		for (unsigned int x = 0; x < result.columns; x++) {
-			for (unsigned int i = 0; i < columns; i++) {
-				result[y][x] += (*this)[y][i] * other[i][x];
-			}
-		}
+void Matrix::multiplyRow(const unsigned &index, const double &lambda) {
+	Node *node = &(*this)[index];
+	for (unsigned i = 0; i < columns; i++) {
+		node->value *= lambda;
+		node = node->next;
 	}
-	return result;
+}
+
+void Matrix::shuffleRows(const unsigned &index1, const unsigned &index2) {
+	// wtf
+}
+
+Node& Matrix::get(const unsigned &index) const {
+	Node *node = data.head;
+	for (unsigned i = 0; i < index; i++) {
+		node = node->next;
+	}
+	return *node;
 }
 
 Matrix Matrix::operator+(const Matrix& other) const{
@@ -119,6 +126,19 @@ Matrix Matrix::operator-(const Matrix& other) const{
 	return result;
 }
 
+Matrix Matrix::operator*(const Matrix &other) const {
+	if (columns != other.rows) throw std::runtime_error("The numbers of columns of the left Matrix and rows of the right Matrix are not equal.");
+	Matrix result = Matrix(rows, other.columns);
+	for (unsigned int y = 0; y < result.rows; y++) {
+		for (unsigned int x = 0; x < result.columns; x++) {
+			for (unsigned int i = 0; i < columns; i++) {
+				result[y][x] += (*this)[y][i] * other[i][x];
+			}
+		}
+	}
+	return result;
+}
+
 // double& Matrix::operator()(const int& row, const int& col) const{
 // 	Node* cell = data.head;
 // 	for(int i=0; i < row * columns + col; i++){
@@ -129,20 +149,18 @@ Matrix Matrix::operator-(const Matrix& other) const{
 
 std::ostream& operator<<(std::ostream &os, const Matrix &matrix) {
 	Node *node = matrix.data.head;
-	short min = 0, max = 0;
-	for (unsigned i = matrix.rows * matrix.columns; i > 0; i--) {
-		if (node->value > max) max = node->value;
-		if (node->value < min) min = node->value;
-		node = node->next;
-	}
-	short minLen = std::to_string(min).size(), maxLen = std::to_string(max).size();
-	short digits = minLen > maxLen ? minLen : maxLen;
-
-	node = matrix.data.head;
+	// Commented out because it's completely useless at the moment.
+	// short maxLen = 0;
+	// for (unsigned i = matrix.rows * matrix.columns; i > 0; i--) {
+	// 	short len = std::to_string(node->value).length();
+	// 	if (len > maxLen) maxLen = len;
+	// 	node = node->next;
+	// }
+	// node = matrix.data.head;
 	os << '[';
 	for (unsigned i = matrix.rows * matrix.columns; i > 0; i--) {
 		if (i % matrix.columns == 0 && i != matrix.rows * matrix.columns) os << ' ';
-		os << std::setw(digits) << node->value;
+		os << std::setw(8) << node->value;
 		node = node->next;
 		os << ((i != 1) ? (((i - 1) % matrix.columns == 0) ? "\n" : ", ") : "]");
 	}

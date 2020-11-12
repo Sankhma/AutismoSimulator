@@ -43,5 +43,17 @@ int main() {
 	std::cout << "m4 - m4" << std::endl;
 	std::cout << m4 - m4 << std::endl;
 
+	m4.multiplyRow(1, 0.125);
+	std::cout << "m4 after multiplying its #1 row by 0.125:\n" << m4 << std::endl;
+
+	for (unsigned i = 0; i < m4.rows * m4.columns; i++)
+		std::cout << m4.get(i).value << ", ";
+
+	std::cout << "\nm4:\n" << m4 << '\n';
+	m4.shuffleRows(0, 2);
+	std::cout << "m4 after shuffling rows 0 and 2:\n" << m4 << '\n';
+	m4.shuffleRows(1, 2);
+	std::cout << "m4 after shuffling rows 1 and 2:\n" << m4 << '\n';
+
 	return 0;
 }
