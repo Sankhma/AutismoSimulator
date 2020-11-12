@@ -54,9 +54,9 @@ struct Matrix {
 	/**
 	 * Adds/subtracts one row to/from another one.
 	 * 
-	 * @param source The index of the row whose values are added.
-	 * @param target The index of the row whose values are added to.
-	 * @param addition Optional. If false, subtraction will be performed instead.
+	 * @param source The index of the row whose values are added/subtracted.
+	 * @param target The index of the row whose values are added to/subtracted from.
+	 * @param addition Optional, true by default. If false, subtraction will be performed instead.
 	 */
 	void addRowToRow(const unsigned &sourceIndex, const unsigned &targetIndex, bool addition = true);
 
