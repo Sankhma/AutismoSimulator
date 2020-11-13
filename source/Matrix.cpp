@@ -7,8 +7,7 @@ Node::Node() : value(0), next(nullptr) {}
 Node::Node(const double &value) : value(value), next(nullptr) {}
 
 void Node::swapValues(Node *n1, Node *n2) {
-	// change auto
-	auto temp = n1->value;
+	double temp = n1->value;
 	n1->value = n2->value;
 	n2->value = temp;
 }
@@ -41,7 +40,9 @@ double& LinkedList::operator[](const unsigned int &index) {
 	Node *node = head;
 	for (unsigned int i = 0; i < index; i++) {
 		node = node->next;
-		if (node == nullptr) throw std::runtime_error("Out of range.");
+		if (node == nullptr) {
+			throw std::out_of_range("Element out of range. Expected a non-negative integer index lesser than " + std::to_string(i) + ". Index provided: " + std::to_string(index) + ".\n");
+		}
 	}
 	return node->value;
 }
@@ -65,6 +66,9 @@ double& Node::operator[](const unsigned int &index) {
 
 
 Matrix::Matrix(unsigned int rows, unsigned int columns) : rows(rows), columns(columns) {
+	if (rows < 1 || columns < 1) {
+		throw std::runtime_error("Invalid size. Each dimension must be a positive integer. Values provided: " + std::to_string(rows) + ", " + std::to_string(columns) + ".\n");
+	}
 	data = LinkedList();
 	for (unsigned int i = 0; i < rows * columns; i++) {
 		data.addNode(0);
@@ -85,6 +89,9 @@ void Matrix::transpose() {
 }
 
 void Matrix::multiplyRow(const unsigned &index, const double &lambda) {
+	if (index >= rows) {
+		throw std::out_of_range("Element out of range. Expected non-negative integer index lesser than " + std::to_string(rows) + ". Index provided: " + std::to_string(index) + ".\n");
+	}
 	Node *node = &(*this)[index];
 	for (unsigned i = 0; i < columns; i++) {
 		node->value *= lambda;
@@ -95,7 +102,7 @@ void Matrix::multiplyRow(const unsigned &index, const double &lambda) {
 void Matrix::shuffleRows(unsigned index1, unsigned index2) {
 	if (index1 == index2) return; // baka
 	if (index1 >= rows || index2 >= rows) {
-		throw std::out_of_range("Element out of range. Expected non-negative indices lesser than " + std::to_string(rows) + ". Indices provided: " + std::to_string(index1) + ", " + std::to_string(index2) + ".\n");
+		throw std::out_of_range("Element out of range. Expected non-negative integer indices lesser than " + std::to_string(rows) + ". Indices provided: " + std::to_string(index1) + ", " + std::to_string(index2) + ".\n");
 	}
 	if (index1 > index2) {
 		unsigned temp = index1;
@@ -119,6 +126,9 @@ void Matrix::shuffleRows(unsigned index1, unsigned index2) {
 }
 
 void Matrix::addRowToRow(const unsigned &sourceIndex, const unsigned &targetIndex, bool addition) {
+	if (sourceIndex >= rows || targetIndex >= rows) {
+		throw std::out_of_range("Element out of range. Expected non-negative integer indices lesser than " + std::to_string(rows) + ". Indices provided: " + std::to_string(sourceIndex) + ", " + std::to_string(targetIndex) + ".\n");
+	}
 	Node *sourceNode = &(*this)[sourceIndex];
 	Node *targetNode = &(*this)[targetIndex];
 	for (unsigned i = 0; i < columns; i++) {
@@ -129,6 +139,9 @@ void Matrix::addRowToRow(const unsigned &sourceIndex, const unsigned &targetInde
 }
 
 Node& Matrix::get(const unsigned &index) const {
+	if (index >= rows * columns) {
+		throw std::out_of_range("Element out of range. Expected non-negative integer index lesser than " + std::to_string(rows * columns) + ". Index provided: " + std::to_string(index) + ".\n");
+	}
 	Node *node = data.head;
 	for (unsigned i = 0; i < index; i++) {
 		node = node->next;
