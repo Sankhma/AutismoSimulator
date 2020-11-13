@@ -50,8 +50,6 @@ int main() {
 	m6.shuffleRows(0, 1);
 	std::cout << "m6 after shuffling rows 0 and 1:\n" << m6 << '\n';
 	m6.transpose();
-	m6.shuffleRows(-1, 1);
-	std::cout << "m6 after shuffling rows 0 and 1:\n" << m6 << '\n';
 	
 
 	return 0;
