@@ -104,8 +104,8 @@ void Matrix::shuffleRows(unsigned index1, unsigned index2) {
 	}
 	Node *a1 = index1 ? &get(index1 * columns - 1) : nullptr, *b1 = &get(index2 * columns),
 	     *a2 = &get((index1 + 1) * columns - 1),              *b2 = (index2 == rows - 1) ? nullptr : &get((index2 + 1) * columns),
-		 *a3 = &get(index2 * columns - 1),                    *b3 = &get(index1 * columns),
-		 *a4 = &get((index2 + 1) * columns - 1),              *b4 = &get((index1 + 1) * columns);
+	     *a3 = &get(index2 * columns - 1),                    *b3 = &get(index1 * columns),
+	     *a4 = &get((index2 + 1) * columns - 1),              *b4 = &get((index1 + 1) * columns);
 	
 	(index1 ? a1->next : data.head) = b1;
 	a2->next = (index2 + 1 == rows ? nullptr : b2);
