@@ -49,7 +49,7 @@ struct Matrix {
 	 * @param index1 Index of the first row to shuffle.
 	 * @param index2 Index of the second row to shuffle.
 	 */
-	void shuffleRows(const unsigned &index1, const unsigned &index2);
+	void shuffleRows(unsigned index1, unsigned index2);
 
 	/**
 	 * Adds/subtracts one row to/from another one.
@@ -63,7 +63,7 @@ struct Matrix {
 	/**
 	 * Get the n-th cell of the matrix.
 	 * 
-	 * @param index Index of the wanted cell (left to right, top to bottom).
+	 * @param index Index of the desired cell (left to right, top to bottom).
 	 * @returns A Node reference to the n-th cell of the matrix.
 	 */
 	Node& get(const unsigned &index) const;

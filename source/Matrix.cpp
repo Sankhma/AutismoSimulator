@@ -92,8 +92,29 @@ void Matrix::multiplyRow(const unsigned &index, const double &lambda) {
 	}
 }
 
-void Matrix::shuffleRows(const unsigned &index1, const unsigned &index2) {
-	// wtf
+void Matrix::shuffleRows(unsigned index1, unsigned index2) {
+	if (index1 == index2) return; // baka
+	if (index1 >= rows || index2 >= rows) {
+		throw std::out_of_range("Element out of range. Expected non-negative indices lesser than " + std::to_string(rows) + ". Indices provided: " + std::to_string(index1) + ", " + std::to_string(index2) + ".\n");
+	}
+	if (index1 > index2) {
+		unsigned temp = index1;
+		index1 = index2;
+		index2 = temp;
+	}
+	Node *a1 = index1 ? &get(index1 * columns - 1) : nullptr, *b1 = &get(index2 * columns),
+	     *a2 = &get((index1 + 1) * columns - 1),              *b2 = (index2 == rows - 1) ? nullptr : &get((index2 + 1) * columns),
+		 *a3 = &get(index2 * columns - 1),                    *b3 = &get(index1 * columns),
+		 *a4 = &get((index2 + 1) * columns - 1),              *b4 = &get((index1 + 1) * columns);
+	
+	(index1 ? a1->next : data.head) = b1;
+	a2->next = (index2 + 1 == rows ? nullptr : b2);
+	if (index2 - index1 == 1) {
+		a4->next = b3;
+	} else {
+		a3->next = b3;
+		a4->next = b4;
+	}
 }
 
 void Matrix::addRowToRow(const unsigned &sourceIndex, const unsigned &targetIndex, bool addition) {
