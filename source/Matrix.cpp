@@ -115,6 +115,7 @@ void Matrix::shuffleRows(unsigned index1, unsigned index2) {
 		a3->next = b3;
 		a4->next = b4;
 	}
+	data.tail = &get(rows * columns - 1);
 }
 
 void Matrix::addRowToRow(const unsigned &sourceIndex, const unsigned &targetIndex, bool addition) {
