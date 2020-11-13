@@ -2,14 +2,23 @@
 #include <cstddef>
 #include <iostream>
 
+/**
+ * Data structure for storing a value and a pointer to the next Node.
+ * Meant to be instantiated by LinkedList class only.
+ */
 struct Node {
-	double value;
-	Node *next;
+	double value; // Value to be stored.
+	Node *next;   // Pointer to the next Node.
 
 	Node();
-	Node(const double &);
+	Node(const double &value);
 
-	static void swapValues(Node *, Node *);
+	/**
+	 * Swaps values of two given Nodes.
+	 * 
+	 * @param n1,n2 Pointers to the Nodes.
+	 */
+	static void swapValues(Node *n1, Node *n2);
 
 	double& operator[](const unsigned int &);
 };
