@@ -52,13 +52,13 @@ struct Matrix {
 	void shuffleRows(unsigned index1, unsigned index2);
 
 	/**
-	 * Adds/subtracts one row to/from another one.
+	 * Adds one row to another one.
 	 * 
-	 * @param sourceIndex The index of the row whose values are added/subtracted.
-	 * @param targetIndex The index of the row whose values are added to/subtracted from.
-	 * @param addition Optional, true by default. If false, subtraction will be performed instead.
+	 * @param sourceIndex The index of the row whose values are added.
+	 * @param targetIndex The index of the row whose values are added to.
+	 * @param lambda Optional, 1 by default. Source row will be multiplied by this value before being added.
 	 */
-	void addRowToRow(const unsigned &sourceIndex, const unsigned &targetIndex, bool addition = true);
+	void addRowToRow(const unsigned &sourceIndex, const unsigned &targetIndex, const double &lambda = 1);
 
 	/**
 	 * Get the n-th cell of the matrix.
