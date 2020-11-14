@@ -1,13 +1,13 @@
 #include <iostream>
-#include "Matrix.h"
+#include "Matrix2.h"
 
 int main() {
-	Node n1 = Node(420);
-	Node n2 = Node(69);
+	auto n1 = Node<float>();
+	auto n2 = Node<float>(420);
 
 	std::cout << n1.value << ", " << n2.value << std::endl;
 
-	Node::swapValues(&n1, &n2);
+	Node<float>::swapValues(&n1, &n2);
 
 	std::cout << n1.value << ", " << n2.value << std::endl;
 
