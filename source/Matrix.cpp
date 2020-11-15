@@ -103,6 +103,9 @@ void Matrix::multiplyRow(const unsigned &index, const double &lambda) {
 	if (index >= rows) {
 		throw std::out_of_range("Element out of range. Expected non-negative integer index lesser than " + std::to_string(rows) + ". Index provided: " + std::to_string(index) + ".\n");
 	}
+	if (lambda == 0) {
+		throw std::runtime_error("Cannot multiply matrix rows by zero.\n");
+	}
 	Node *node = &(*this)[index];
 	for (unsigned i = 0; i < columns; i++) {
 		node->value *= lambda;

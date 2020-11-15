@@ -69,6 +69,8 @@ int main() {
 
 	AugmentedMatrix am1 = AugmentedMatrix(m9, m7);
 	std::cout << "am1:\n" << am1 << '\n';
+	am1.multiplyRow(1, 0);
+	std::cout << "am1 after multiplying row 1 by 0:\n" << am1 << '\n';
 	
 
 	return 0;

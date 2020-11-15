@@ -114,6 +114,7 @@ struct Matrix {
 	 * @param index Row index to multiply (0-based).
 	 * @param lambda Scalar by which to multiply.
 	 * @throws std::out_of_range Thrown if the index provided is invalid.
+	 * @throws std::runtime_error Thrown if lambda is equal to zero.
 	 */
 	void multiplyRow(const unsigned &index, const double &lambda);
 
@@ -178,6 +179,7 @@ public:
 	 * @param index Row index to multiply (0-based).
 	 * @param lambda Scalar by which to multiply.
 	 * @throws std::out_of_range Thrown if the index provided is invalid.
+	 * @throws std::runtime_error Thrown if lambda is equal to zero.
 	 */
 	void multiplyRow(const unsigned &index, const double &lambda);
 
