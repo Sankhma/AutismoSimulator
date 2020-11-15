@@ -125,14 +125,14 @@ void Matrix::shuffleRows(unsigned index1, unsigned index2) {
 	data.tail = &get(rows * columns - 1);
 }
 
-void Matrix::addRowToRow(const unsigned &sourceIndex, const unsigned &targetIndex, bool addition) {
+void Matrix::addRowToRow(const unsigned &sourceIndex, const unsigned &targetIndex, const double &lambda) {
 	if (sourceIndex >= rows || targetIndex >= rows) {
 		throw std::out_of_range("Element out of range. Expected non-negative integer indices lesser than " + std::to_string(rows) + ". Indices provided: " + std::to_string(sourceIndex) + ", " + std::to_string(targetIndex) + ".\n");
 	}
 	Node *sourceNode = &(*this)[sourceIndex];
 	Node *targetNode = &(*this)[targetIndex];
 	for (unsigned i = 0; i < columns; i++) {
-		targetNode->value += sourceNode->value * (addition ? 1 : -1);
+		targetNode->value += sourceNode->value * lambda;
 		sourceNode = sourceNode->next;
 		targetNode = targetNode->next;
 	}

@@ -50,6 +50,16 @@ int main() {
 	m6.shuffleRows(0, 1);
 	std::cout << "m6 after shuffling rows 0 and 1:\n" << m6 << '\n';
 	m6.transpose();
+
+	Matrix m7 = Matrix(4, 1);
+	m7[0][0] = 1, m7[1][0] = 2, m7[2][0] = 3, m7[3][0] = 4;
+	std::cout << "m7:\n" << m7 << '\n';
+	m7.shuffleRows(0, 1);
+	std::cout << "m7 after shuffling rows 0 and 1:\n" << m7 << '\n';
+	m7.shuffleRows(3, 0);
+	std::cout << "m7 after shuffling rows 3 and 0:\n" << m7 << '\n';
+	m7.addRowToRow(2, 3, -2.5);
+	std::cout << "m7 after adding row 2 to row 3 -2.5 times:\n" << m7 << '\n';
 	
 
 	return 0;

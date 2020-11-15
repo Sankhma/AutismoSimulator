@@ -2,3 +2,5 @@
 *.vscode
 html
 latex
+Doxyfile
+.idea
