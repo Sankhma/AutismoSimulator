@@ -54,12 +54,21 @@ int main() {
 	Matrix m7 = Matrix(4, 1);
 	m7[0][0] = 1, m7[1][0] = 2, m7[2][0] = 3, m7[3][0] = 4;
 	std::cout << "m7:\n" << m7 << '\n';
-	m7.shuffleRows(0, 1);
-	std::cout << "m7 after shuffling rows 0 and 1:\n" << m7 << '\n';
-	m7.shuffleRows(3, 0);
-	std::cout << "m7 after shuffling rows 3 and 0:\n" << m7 << '\n';
-	m7.addRowToRow(2, 3, -2.5);
-	std::cout << "m7 after adding row 2 to row 3 -2.5 times:\n" << m7 << '\n';
+	// m7.shuffleRows(0, 1);
+	// std::cout << "m7 after shuffling rows 0 and 1:\n" << m7 << '\n';
+	// m7.shuffleRows(3, 0);
+	// std::cout << "m7 after shuffling rows 3 and 0:\n" << m7 << '\n';
+	// m7.addRowToRow(2, 3, -2.5);
+	// std::cout << "m7 after adding row 2 to row 3 -2.5 times:\n" << m7 << '\n';
+
+	Matrix m9 = Matrix(4, 3);
+	m9[0][0] = 1, m9[0][1] = 2, m9[0][2] = 3;
+	m9[1][0] = 4, m9[1][1] = 5, m9[1][2] = 6;
+	m9[2][0] = 7, m9[2][1] = 8, m9[2][2] = -69;
+	m9[3][0] = 10, m9[3][1] = 11, m9[3][2] = 12;
+
+	AugmentedMatrix am1 = AugmentedMatrix(m9, m7);
+	std::cout << "am1:\n" << am1 << '\n';
 	
 
 	return 0;

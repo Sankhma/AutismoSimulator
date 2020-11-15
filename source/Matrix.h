@@ -199,4 +199,6 @@ public:
 	 * @throws std::out_of_range Thrown if any of the indices provided is invalid.
 	 */
 	void addRowToRow(const unsigned &sourceIndex, const unsigned &targetIndex, const double &lambda = 1);
+
+	friend std::ostream& operator<<(std::ostream &os, const AugmentedMatrix &m);
 };

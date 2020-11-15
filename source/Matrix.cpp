@@ -257,3 +257,19 @@ void AugmentedMatrix::addRowToRow(const unsigned &sourceIndex, const unsigned &t
 	main.addRowToRow(sourceIndex, targetIndex, lambda);
 	augment.addRowToRow(sourceIndex, targetIndex, lambda);
 }
+
+std::ostream& operator<<(std::ostream &os, const AugmentedMatrix &m) {
+	os << '[';
+	for (unsigned i = 0; i < m.main.rows; i++) {
+		if (i != 0) os << ' ';
+		for (unsigned j = 0; j < m.main.columns; j++) {
+			os << std::setw(8) << m.main[i][j] << ' ';
+		}
+		os << '|';
+		for (unsigned j = 0; j < m.augment.columns; j++) {
+			os << ' ' << std::setw(8) << m.augment[i][j];
+		}
+		os << (i != m.main.rows - 1 ? '\n' : ']');
+	}
+	return os;
+}
