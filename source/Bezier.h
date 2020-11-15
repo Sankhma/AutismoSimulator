@@ -24,7 +24,7 @@ public:
 	 * Constructor for the Bezier2 class.
 	 * 
 	 * @param size Amount of points being passed to the constructor.
-	 * @param ... Comma-separated sequence of `size` 2-dimensional points.
+	 * @param ... Comma-separated sequence of `size` 2-dimensional points, provided by reference, i.e. &Vector2.
 	 * @returns A new Bezier2 object.
 	 * @overlaod
 	 */
@@ -82,7 +82,7 @@ public:
 	 * Constructor for the Bezier3 class.
 	 * 
 	 * @param size Amount of points being passed to the constructor.
-	 * @param ... Comma-separated sequence of `size` 3-dimensional points.
+	 * @param ... Comma-separated sequence of `size` 3-dimensional points, provided by reference, i.e. &Vector3.
 	 * @returns A new Bezier3 object.
 	 * @overlaod
 	 */
