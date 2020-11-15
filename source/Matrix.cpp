@@ -242,3 +242,18 @@ AugmentedMatrix::AugmentedMatrix(const unsigned int& rows, const unsigned int& c
 	this->main = Matrix(rows, columns);
 	this->augment = Matrix(rows, 1);
 }
+
+void AugmentedMatrix::multiplyRow(const unsigned &index, const double &lambda) {
+	main.multiplyRow(index, lambda);
+	augment.multiplyRow(index, lambda);
+}
+
+void AugmentedMatrix::shuffleRows(unsigned index1, unsigned index2) {
+	main.shuffleRows(index1, index2);
+	augment.shuffleRows(index1, index2);
+}
+
+void AugmentedMatrix::addRowToRow(const unsigned &sourceIndex, const unsigned &targetIndex, const double &lambda) {
+	main.addRowToRow(sourceIndex, targetIndex, lambda);
+	augment.addRowToRow(sourceIndex, targetIndex, lambda);
+}

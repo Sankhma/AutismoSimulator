@@ -171,4 +171,32 @@ public:
 	AugmentedMatrix(const Matrix& main, const Matrix& augment);
 	AugmentedMatrix(const unsigned int& size);
 	AugmentedMatrix(const unsigned int& rows, const unsigned int& columns);
+
+	/**
+	 * Multiply the chosen row by the given value.
+	 * 
+	 * @param index Row index to multiply (0-based).
+	 * @param lambda Scalar by which to multiply.
+	 * @throws std::out_of_range Thrown if the index provided is invalid.
+	 */
+	void multiplyRow(const unsigned &index, const double &lambda);
+
+	/**
+	 * Shuffle two chosen rows of the matrix.
+	 * 
+	 * @param index1 Index of the first row to shuffle.
+	 * @param index2 Index of the second row to shuffle.
+	 * @throws std::out_of_range Thrown if any of the indices provided is invalid.
+	 */
+	void shuffleRows(unsigned index1, unsigned index2);
+
+	/**
+	 * Adds one row to another one.
+	 * 
+	 * @param sourceIndex The index of the row whose values are added.
+	 * @param targetIndex The index of the row whose values are added to.
+	 * @param lambda Optional, 1 by default. Source row will be multiplied by this value before being added.
+	 * @throws std::out_of_range Thrown if any of the indices provided is invalid.
+	 */
+	void addRowToRow(const unsigned &sourceIndex, const unsigned &targetIndex, const double &lambda = 1);
 };
