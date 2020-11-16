@@ -202,5 +202,12 @@ public:
 	 */
 	void addRowToRow(const unsigned &sourceIndex, const unsigned &targetIndex, const double &lambda = 1);
 
+	/**
+	 * Perform a series of row operations on the matrix to obtain an identity matrix on the left side.
+	 * *Works with square main matrices only.
+	 * **May sometimes write a number similar to -2.22045e-016 instead of zero.
+	 */
+	void solve();
+
 	friend std::ostream& operator<<(std::ostream &os, const AugmentedMatrix &m);
 };

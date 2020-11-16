@@ -261,6 +261,41 @@ void AugmentedMatrix::addRowToRow(const unsigned &sourceIndex, const unsigned &t
 	augment.addRowToRow(sourceIndex, targetIndex, lambda);
 }
 
+void AugmentedMatrix::solve() {
+	unsigned y;
+	double pivot;
+	for (unsigned x = 0; x < main.columns; x++) {
+		for (unsigned i = x; i < main.rows; i++) {
+			pivot = main[i][x];
+			if (pivot != 0) {
+				y = i;
+				break;
+			}
+		}
+		if (pivot == 0) {
+			break;
+		}
+		if (y != x) {
+			shuffleRows(x, y);
+			y = x;
+		}
+		if (pivot != 1) {
+			multiplyRow(y, 1.0 / pivot);
+		}
+		for (unsigned i = y + 1; i < main.rows; i++) {
+			addRowToRow(y, i, -main[i][x]);
+		}
+	}
+	for (unsigned x = main.columns - 1; x > 0; x--) {
+		if (main[x][x] != 1) {
+			continue;
+		}
+		for (unsigned y = 0; y < x; y++) {
+			addRowToRow(x, y, -main[y][x]);
+		}
+	}
+}
+
 std::ostream& operator<<(std::ostream &os, const AugmentedMatrix &m) {
 	os << '[';
 	for (unsigned i = 0; i < m.main.rows; i++) {
