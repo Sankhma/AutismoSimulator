@@ -2,12 +2,6 @@
 
 #include "Track.h"
 
-// are they necessary?
-// lol they are not time to throw poggers
-// #include <iostream>
-// #include <vector>
-// #include <string>
-
 template <typename T>
 Track<T>::Track(const std::vector<T> &curves, const std::string &name, const double &length, const double &width)
     : name(name), length(length), width(width), curves(curves){
