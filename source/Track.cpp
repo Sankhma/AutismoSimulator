@@ -20,7 +20,8 @@ Track<T>::Track(const std::vector<T> &curves, const std::string &name, const dou
         #endif
     }
 
-template Track<Bezier2>::Track();
+template class Track<Bezier2>;
+template class Track<Bezier3>;
 
 template <typename T>
 std::string Track<T>::default_track_name(){

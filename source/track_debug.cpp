@@ -13,14 +13,14 @@ int main(){
 
     std::string name = "siemano";
 
-    Vector2 vec1 = {69, 420};
-    Vector2 vec2 = {420, 69};
+    Vector3 vec1 = {69, 420, 69};
+    Vector3 vec2 = {420, 69, 420};
 
-    Bezier2 bez = Bezier2(2, &vec1, &vec2);
+    Bezier3 bez = Bezier3(3, &vec1, &vec2, &vec1);
 
-    std::vector<Bezier2> empty{};
-    Track<Bezier2> track0(empty);
+    std::vector<Bezier3> empty{};
+    Track<Bezier3> track0(empty);
 
-    std::vector<Bezier2> not_empty = {bez};
-    Track<Bezier2> track1(not_empty, name, len, width);
+    std::vector<Bezier3> not_empty = {bez};
+    Track<Bezier3> track1(not_empty, name, len, width);
 }
