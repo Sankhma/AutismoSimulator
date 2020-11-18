@@ -13,9 +13,9 @@ int main(){
         Vector2 p2 = {10, -10};
         Vector2 p3 = {3.14, 2.73};
 
-        Bezier2 b0 = {p0, p1};
-        Bezier2 b1 = {p0, p1, p2};
-        Bezier2 b2 = {p0, p1, p2, p3};
+        Bezier2 b0 = Bezier2(2, &p0, &p1);
+        Bezier2 b1 = Bezier2(3, &p0, &p1, &p2);
+        Bezier2 b2 = Bezier2(4, &p0, &p1, &p2, &p3);
 
         std::cout << "Bezier2 for 2 points, steps=20" << std::endl;
         for(int i=0; i <= steps; i++){

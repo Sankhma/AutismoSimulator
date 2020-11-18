@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cmath>
 
 #include "Vector.h"
 
@@ -24,6 +25,8 @@ int main(){
 		std::cout << "Testing commutitivity of multiplication by scalar:" << std::endl;
 		std::cout << "Vector3 * lambda: x: " << mul.x << " y: " << mul.y << " z: " << mul.z << std::endl;
 		std::cout << "lambda * Vector3: x: " << mul1.x << " y: " << mul1.y << " z: " << mul1.z << std::endl;
+
+		std::cout << "Angle between a and b : " << Vector3::angle(a, b) << std::endl;
 	}
 
 	std::cout << "-============ Vector2 test =============-" << std::endl;
@@ -44,5 +47,7 @@ int main(){
 		std::cout << "Subtracting: x: " << sub.x << " y: " << sub.y << std::endl;
 		std::cout << "Multiplying by a scalar: x: " << mul.x << " y: " << mul.y << std::endl;
 		std::cout << "Dot: x: " << dot << std::endl;
+
+		std::cout << "Angle between a and b : " << Vector2::angle(a, b) << std::endl;
 	}
 }
