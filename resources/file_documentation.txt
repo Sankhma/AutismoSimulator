@@ -1,0 +1,48 @@
+Documentation of .track files.
+Their structure, and how to construct and design them.
+This is by no means a final version and may be subjected to change.
+
+file offset (bytes): 0
+field name: ChunkID
+field size (bytes): 8
+endian: big
+
+file offset (bytes): 8
+field name: ChunkSize
+field size (bytes): 4
+endian: little
+
+file offset (bytes): 12
+field name: SubChunk1ID
+field size (bytes): 4
+endian: big
+
+file offset (bytes): 16
+field name: SubChunk1Size
+field size (bytes): 4
+endian: little
+
+file offset (bytes): 20
+field name: NumBezier
+field size (bytes): 2
+endian: little
+
+file offset (bytes): 22
+field name: Precision
+field size (bytes): 2
+endian: little
+
+file offset (bytes): 24
+field name: SubChunk2ID
+field size (bytes): 4
+endian: big
+
+file offset (bytes): 28
+field name: SubChunk2Size
+field size (bytes): 4
+endian: little
+
+file offset (bytes): 32
+field name: data
+field size (bytes): SubChunk2Size
+endian: little
