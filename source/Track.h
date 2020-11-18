@@ -5,7 +5,6 @@
 
 #include "Bezier.h"
 
-// default set to Bezier2, might be usefull later on to change to Bezier3
 template <typename T>
 struct Track{
     inline static unsigned char track_index = 0;
