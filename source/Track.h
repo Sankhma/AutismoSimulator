@@ -7,8 +7,7 @@
 
 // default set to Bezier2, might be usefull later on to change to Bezier3
 template <typename T>
-class Track{
-public:
+struct Track{
     inline static unsigned char track_index = 0;
 
     std::string name;

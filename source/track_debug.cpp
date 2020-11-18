@@ -18,9 +18,9 @@ int main(){
 
     Bezier2 bez = Bezier2(2, &vec1, &vec2);
 
-    std::vector<Bezier2> empty = {};
-    Track<> track0 = Track<>(empty);
+    std::vector<Bezier2> empty{};
+    Track<Bezier2> track0(empty);
 
     std::vector<Bezier2> not_empty = {bez};
-    Track<> track1 = Track<>(not_empty, name, len, width);
+    Track<Bezier2> track1(not_empty, name, len, width);
 }
