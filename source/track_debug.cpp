@@ -23,4 +23,6 @@ int main(){
 
     std::vector<Bezier3> not_empty = {bez};
     Track<Bezier3> track1(not_empty, name, len, width);
+
+    track1.Print();
 }
