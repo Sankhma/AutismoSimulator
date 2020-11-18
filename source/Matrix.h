@@ -164,13 +164,37 @@ struct Matrix {
 
 
 // Note: class with augement of only 1 column wide, might change that later on
-class AugmentedMatrix{
+struct AugmentedMatrix{
 	Matrix main;
 	Matrix augment;
 
-public:
+	/**
+	 * Constructor for the AugmentedMatrix class.
+	 * 
+	 * @param main The main Matrix of and Augmented Matrix (lhs).
+	 * @param augment The augmented Matrix (rhs).
+	 * @returns A new AugmentedMatrix object.
+	 * @throws std::runtime_error Thrown if main Matrix has more columns than rows, or no. of rows in main and augment doesn't match.
+	 */
 	AugmentedMatrix(const Matrix& main, const Matrix& augment);
+
+	/**
+	 * Constructor for the AugmentedMatrix class.
+	 * 
+	 * @param size The size of main Matrix, i.e. creates nxn main Matrix and nx1 augment Matrix.
+	 * @returns A new AugmentedMatrix object.
+	 */
 	AugmentedMatrix(const unsigned int& size);
+
+
+	/**
+	 * Constructor for the AugmentedMatrix class.
+	 * 
+	 * @param rows The amount of the rows in main and augment Matrix.
+	 * @param columns The amount of the columns in the main Matrix.
+	 * @returns A new AugmentedMatrix object.
+	 * @throws std::runtime_error Thrown if no. of columns is bigger than no. of rows.
+	 */
 	AugmentedMatrix(const unsigned int& rows, const unsigned int& columns);
 
 	/**
