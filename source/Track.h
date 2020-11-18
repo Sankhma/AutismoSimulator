@@ -31,5 +31,8 @@ public:
     //TODO: variadic template for multiple options
     // Track(const std::vector<Bezier2> &curves, ...);
 
+    /**
+     * Prints name, length, width, and number of Bezier curves it is defined by. Ends with a new line.
+     */
     void Print();
 };
