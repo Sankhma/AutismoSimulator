@@ -89,16 +89,16 @@ int main() {
 
 		std::cout << m2 << '\n';
 
-		Matrix<unsigned long long> m3 = Matrix<unsigned long long>(3, 2);
+		Matrix<Vector2> m3 = Matrix<Vector2>(3, 2);
 		m3[0][0] = 1, m3[0][1] = 2, m3[0][2] = 3;
 		m3[1][0] = 4, m3[1][1] = 5, m3[1][2] = 6;
 
 		std::cout << m3 << '\n';
 	}
 	
-	std::cout << "Comparing two matricies" << std::endl;
-	std::cout << "Matrix<double>::compare(m7, m9): " << Matrix<double>::compare(m7, m9) << std::endl;
-	std::cout << "m7 == m9: " << (m7 == m9) << std::endl;
+	// std::cout << "Comparing two matricies" << std::endl;
+	// std::cout << "Matrix<double>::compare(m7, m9): " << Matrix<double>::compare(m7, m9) << std::endl;
+	// std::cout << "m7 == m9: " << (m7 == m9) << std::endl;
 
 	std::cout << "Generating two random matrices with size 1000x5" << std::endl;
 	Matrix<unsigned> m10 = Matrix<unsigned>::MatrixRandom(100, 100);

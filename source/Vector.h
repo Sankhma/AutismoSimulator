@@ -42,6 +42,8 @@ struct Vector2{
 
 Vector2 operator*(const Vector2& vec, const double lambda);
 Vector2 operator*(const double lambda, const Vector2& vec);
+bool operator==(const Vector2 &vec1, const Vector2 &vec2);
+bool operator!=(const Vector2 &vec1, const Vector2 &vec2);
 
 /**
  * Data structure for storing three values.
@@ -91,3 +93,5 @@ struct Vector3{
 
 Vector3 operator*(const Vector3& vec, const double lambda);
 Vector3 operator*(const double lambda, const Vector3& vec);
+bool operator==(const Vector3 &vec1, const Vector3 &vec2);
+bool operator!=(const Vector3 &vec1, const Vector3 &vec2);

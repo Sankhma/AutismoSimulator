@@ -285,6 +285,16 @@ bool Matrix<T>::operator==(const Matrix<T> &matrix) const {
 // 	return os;
 // }
 
+template<>
+Matrix<Vector2> Matrix<Vector2>::operator*(const Matrix<Vector2> &other) const {
+	throw std::runtime_error("Multiplying matrices of Vector2s is not allowed.");
+}
+
+template<>
+Matrix<Vector3> Matrix<Vector3>::operator*(const Matrix<Vector3> &other) const {
+	throw std::runtime_error("Multiplying matrices of Vector3s is not allowed.");
+}
+
 template class Matrix<char>;
 template class Matrix<unsigned char>;
 template class Matrix<short>;
@@ -297,6 +307,8 @@ template class Matrix<long long>;
 template class Matrix<unsigned long long>;
 template class Matrix<float>;
 template class Matrix<double>;
+template class Matrix<Vector2>;
+template class Matrix<Vector3>;
 
 //-============ AugmentedMatrix =============-
 
