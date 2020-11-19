@@ -1,6 +1,7 @@
 #include <iostream>
-#include "Matrix.h"
 #include <vector>
+#include "Matrix.h"
+#include "Vector.h"
 
 int main() {
 	// Matrix m1 = Matrix(3, 2);
@@ -51,8 +52,8 @@ int main() {
 	// std::cout << "m6 after shuffling rows 0 and 1:\n" << m6 << '\n';
 	// m6.transpose();
 
-	Matrix m7 = Matrix(4, 1);
-	m7[0][0] = 1, m7[1][0] = 2, m7[2][0] = 3, m7[3][0] = 4;
+	// Matrix m7 = Matrix(4, 1);
+	// m7[0][0] = 1, m7[1][0] = 2, m7[2][0] = 3, m7[3][0] = 4;
 	// std::cout << "m7:\n" << m7 << '\n';
 	// m7.shuffleRows(0, 1);
 	// std::cout << "m7 after shuffling rows 0 and 1:\n" << m7 << '\n';
@@ -61,17 +62,39 @@ int main() {
 	// m7.addRowToRow(2, 3, -2.5);
 	// std::cout << "m7 after adding row 2 to row 3 -2.5 times:\n" << m7 << '\n';
 
-	Matrix m9 = Matrix(4, 4);
-	m9[0][0] = 1, m9[0][1] = 2, m9[0][2] = 3, m9[0][3] = 4;
-	m9[1][0] = 5, m9[1][1] = 6, m9[1][2] = 7, m9[1][3] = 8;
-	m9[2][0] = 9, m9[2][1] = 10, m9[2][2] = 11, m9[2][3] = 12;
-	m9[3][0] = 13, m9[3][1] = 14, m9[3][2] = 15, m9[3][3] = 16;
+	// Matrix m9 = Matrix(4, 4);
+	// m9[0][0] = 1, m9[0][1] = 2, m9[0][2] = 3, m9[0][3] = 4;
+	// m9[1][0] = 5, m9[1][1] = 6, m9[1][2] = 7, m9[1][3] = 8;
+	// m9[2][0] = 9, m9[2][1] = 10, m9[2][2] = 11, m9[2][3] = 12;
+	// m9[3][0] = 13, m9[3][1] = 14, m9[3][2] = 15, m9[3][3] = 16;
 
-	AugmentedMatrix am1 = AugmentedMatrix(m9, m7);
-	std::cout << "am1:\n" << am1 << '\n';
-	am1.solve();
-	std::cout << "am1 after obtaining its reduced row-echelon form:\n" << am1 << '\n';
+	// AugmentedMatrix am1 = AugmentedMatrix(m9, m7);
+	// std::cout << "am1:\n" << am1 << '\n';
+	// am1.solve();
+	// std::cout << "am1 after obtaining its reduced row-echelon form:\n" << am1 << '\n';
 	
+	// TEMPLATES
+	{
+		Matrix<double> m1 = Matrix<double>(4, 3);
+		m1[0][0] = 1, m1[0][1] = 2, m1[0][2] = 3;
+		m1[1][0] = 4, m1[1][1] = 5, m1[1][2] = 6;
+		m1[2][0] = 7, m1[2][1] = 8, m1[2][2] = 9;
+		m1[3][0] = 10, m1[3][1] = 11, m1[3][2] = 12;
+
+		std::cout << m1 << '\n';
+
+		Matrix<int> m2 = Matrix<int>(2, 3);
+		m2[0][0] = 1, m2[0][1] = 2, m2[0][2] = 3;
+		m2[1][0] = 4, m2[1][1] = 5, m2[1][2] = 6;
+
+		std::cout << m2 << '\n';
+
+		Matrix<Vector2> m3 = Matrix<Vector2>(3, 2);
+		m3[0][0] = 1, m3[0][1] = 2, m3[0][2] = 3;
+		m3[1][0] = 4, m3[1][1] = 5, m3[1][2] = 6;
+
+		std::cout << m3 << '\n';
+	}
 
 	return 0;
 }
