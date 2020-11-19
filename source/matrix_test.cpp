@@ -100,5 +100,14 @@ int main() {
 	// std::cout << "Matrix<double>::compare(m7, m9): " << Matrix<double>::compare(m7, m9) << std::endl;
 	// std::cout << "m7 == m9: " << (m7 == m9) << std::endl;
 
+	std::cout << "Generating two random matrices with size 1000x5" << std::endl;
+	Matrix<unsigned> m10 = Matrix<unsigned>::MatrixRandom(100, 100);
+	Matrix<unsigned> m11 = Matrix<unsigned>::MatrixRandom(100, 100);
+
+	std::cout << "m10 == m11: " << Matrix<unsigned>::compare(m10, m11) << std::endl;
+	std::cout << m10 << "\t" << m11 << std::endl;
+
+	std::cin.get();
+
 	return 0;
 }

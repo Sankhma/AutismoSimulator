@@ -1,7 +1,14 @@
+#define _DEBUG_RAND
+
 #include "Matrix.h"
 #include "Vector.h"
 #include <iomanip>
+#include <random>
+#include <chrono>
 
+//-============ Initialization of rng =============-
+unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+std::mt19937 generator(seed);
 
 //-============ Node =============-
 
@@ -94,6 +101,19 @@ Matrix<T>::Matrix(unsigned int rows, unsigned int columns) : rows(rows), columns
 	for (int i = 0; i < rows * columns; i++) {
 		data.addNode(T());
 	}
+}
+
+Matrix<unsigned> Matrix<unsigned>::MatrixRandom(const unsigned &rows, const unsigned &columns){
+	Matrix<unsigned> result(rows, columns);
+	#ifdef _DEBUG_RAND
+	std::cout << "Generator instantiated with min: " << generator.min() << "\t max: " << generator.max() << std::endl;
+	#endif
+	for(unsigned i = 0; i < rows; i++){
+		for(unsigned j = 0; j < columns; j++){
+			result[i][j] = generator();
+		}
+	}
+	return result;
 }
 
 template<typename T>
