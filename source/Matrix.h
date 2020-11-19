@@ -146,9 +146,19 @@ struct Matrix {
 	 */
 	Node& get(const unsigned &index) const;
 
+	/**
+	 * Compares two matrices and return a boolean value.
+	 * 
+	 * @param matrix1 First matrix to compare.
+	 * @param matrix2 Second matrix to compare.
+	 * @returns Boolean value, true for equal matrices, false otherwise.
+	 */
+	static bool compare(const Matrix &matrix1, const Matrix &matrix2);
+
 	Matrix operator+(const Matrix &) const;
 	Matrix operator-(const Matrix &) const;
 	Matrix operator*(const Matrix &) const;
+	bool operator==(const Matrix &) const;
 
 	// double& operator()(const unsigned int&, const unsigned int&) const;
 

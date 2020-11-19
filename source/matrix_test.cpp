@@ -72,6 +72,9 @@ int main() {
 	am1.solve();
 	std::cout << "am1 after obtaining its reduced row-echelon form:\n" << am1 << '\n';
 	
+	std::cout << "Comparing two matricies" << std::endl;
+	std::cout << "Matrix::compare(m7, m9): " << Matrix::compare(m7, m9) << std::endl;
+	std::cout << "m7 == m9: " << (m7 == m9) << std::endl;
 
 	return 0;
 }
