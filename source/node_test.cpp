@@ -1,5 +1,5 @@
 #include <iostream>
-#include "Matrix2.h"
+#include "Matrix.h"
 
 int main() {
 	auto n1 = Node<float>();
