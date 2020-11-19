@@ -45,6 +45,14 @@ Vector2 operator*(const double lambda, const Vector2& vec){
 	return vec * lambda;
 }
 
+bool operator==(const Vector2 &vec1, const Vector2 &vec2) {
+	return vec1.x == vec2.x && vec1.y == vec2.y;
+}
+
+bool operator!=(const Vector2 &vec1, const Vector2 &vec2) {
+	return vec1.x != vec2.x || vec1.y != vec2.y;
+}
+
 double Vector2::dot(const Vector2 &v1, const Vector2 &v2) {
 	return v1.x * v2.x + v1.y * v2.y;
 }
@@ -114,6 +122,14 @@ Vector3 operator*(const Vector3& vec, const double lambda){
 
 Vector3 operator*(const double lambda, const Vector3& vec){
     return vec * lambda;
+}
+
+bool operator==(const Vector3 &vec1, const Vector3 &vec2) {
+	return vec1.x == vec2.x && vec1.y == vec2.y && vec1.z == vec2.z;
+}
+
+bool operator!=(const Vector3 &vec1, const Vector3 &vec2) {
+	return vec1.x != vec2.x || vec1.y != vec2.y || vec1.z != vec2.z;
 }
 
 double Vector3::dot(const Vector3& vec1, const Vector3& vec2){
