@@ -252,16 +252,13 @@ template class Matrix<unsigned char>;
 template class Matrix<short>;
 template class Matrix<unsigned short>;
 template class Matrix<int>;
-template class Matrix<unsigned int>;
+template class Matrix<unsigned>;
 template class Matrix<long>;
 template class Matrix<unsigned long>;
 template class Matrix<long long>;
 template class Matrix<unsigned long long>;
-template class Matrix<unsigned>;
 template class Matrix<float>;
 template class Matrix<double>;
-template class Matrix<Vector2>;
-template class Matrix<Vector3>;
 
 //-============ AugmentedMatrix =============-
 

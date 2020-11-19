@@ -89,7 +89,7 @@ int main() {
 
 		std::cout << m2 << '\n';
 
-		Matrix<Vector2> m3 = Matrix<Vector2>(3, 2);
+		Matrix<unsigned long long> m3 = Matrix<unsigned long long>(3, 2);
 		m3[0][0] = 1, m3[0][1] = 2, m3[0][2] = 3;
 		m3[1][0] = 4, m3[1][1] = 5, m3[1][2] = 6;
 
