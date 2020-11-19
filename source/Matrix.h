@@ -1,13 +1,15 @@
 #pragma once
 #include <cstddef>
 #include <iostream>
+#include <iomanip>
 
+template<typename T>
 /**
  * Data structure used to store a value and a pointer to the next Node.
  * Meant to be instantiated by LinkedList class only.
  */
 struct Node {
-	double value; // Value to be stored.
+	T value; // Value to be stored.
 	Node *next;   // Pointer to the next Node.
 
 	/**
@@ -23,7 +25,7 @@ struct Node {
 	 * @param value The value to be stored in the node.
 	 * @overload
 	 */
-	Node(const double &value);
+	Node(const T &value);
 
 	/**
 	 * Swap values of two given Nodes.
@@ -38,17 +40,18 @@ struct Node {
 	 * @param index Index of the desired Node.
 	 * @returns Value of the desired Node.
 	 */
-	double& operator[](const unsigned int &index);
+	T& operator[](const unsigned int &index);
 };
 
+template<typename T>
 /**
  * Data structure used to store Node objects.
  * 
  * @see Node
  */
 struct LinkedList {
-	Node *head; // Pointer to the first element of the list.
-	Node *tail; // Pointer to the last element of the list.
+	Node<T> *head; // Pointer to the first element of the list.
+	Node<T> *tail; // Pointer to the last element of the list.
 
 	/**
 	 * Constructor for the LinkedList class.
@@ -62,7 +65,7 @@ struct LinkedList {
 	 * 
 	 * @param value Value to be added to the list.
 	 */
-	void addNode(const double &value);
+	void addNode(const T &value);
 
 	/**
 	 * Create a shallow copy of the list.
@@ -79,9 +82,10 @@ struct LinkedList {
 	 * @throws std::runtime_error Thrown if the list is empty.
 	 * @throws std::out_of_range Thrown if the index provided is invalid.
 	 */
-	double& operator[](const unsigned int &index);
+	T& operator[](const unsigned int &index);
 };
 
+template<typename T>
 /**
  * Data structure representing a rectangular array of numbers, arranged in rows and columns.
  * 
@@ -90,7 +94,7 @@ struct LinkedList {
 struct Matrix {
     unsigned int rows;    // The amount of rows of the matrix.
     unsigned int columns; // The amount of columns of the matrix.
-	LinkedList data;      // Data stored in the matrix.
+	LinkedList<T> data;      // Data stored in the matrix.
 
 	/**
 	 * Constructor for the Matrix class.
@@ -149,7 +153,7 @@ struct Matrix {
 	 * @returns A Node reference to the n-th cell of the matrix.
 	 * @throws std::out_of_range Thrown if the index provided is invalid.
 	 */
-	Node& get(const unsigned &index) const;
+	Node<T>& get(const unsigned &index) const;
 
 	/**
 	 * Compares two matrices and return a boolean value.
@@ -173,15 +177,24 @@ struct Matrix {
 	 * @param index Index of the desired row.
 	 * @returns A Node reference to the n-th row of the matrix.
 	 */
-	Node& operator[](const unsigned int &index) const;
-	friend std::ostream& operator<<(std::ostream &, const Matrix &);
+	Node<T>& operator[](const unsigned int &index) const;
+	friend std::ostream& operator<<(std::ostream &os, const Matrix<T> &matrix) {
+		Node<T> *node = matrix.data.head;
+		os << '[';
+		for (unsigned i = matrix.rows * matrix.columns; i > 0; i--) {
+			if (i % matrix.columns == 0 && i != matrix.rows * matrix.columns) os << ' ';
+			os << std::setw(8) << node->value;
+			node = node->next;
+			os << ((i != 1) ? (((i - 1) % matrix.columns == 0) ? "\n" : ", ") : "]");
+		}
+		return os;
+	}
 };
-
 
 // Note: class with augement of only 1 column wide, might change that later on
 struct AugmentedMatrix{
-	Matrix main;
-	Matrix augment;
+	Matrix<double> main;
+	Matrix<double> augment;
 
 	/**
 	 * Constructor for the AugmentedMatrix class.
@@ -191,7 +204,7 @@ struct AugmentedMatrix{
 	 * @returns A new AugmentedMatrix object.
 	 * @throws std::runtime_error Thrown if main Matrix has more columns than rows, or no. of rows in main and augment doesn't match.
 	 */
-	AugmentedMatrix(const Matrix& main, const Matrix& augment);
+	AugmentedMatrix(const Matrix<double>& main, const Matrix<double>& augment);
 
 	/**
 	 * Constructor for the AugmentedMatrix class.
