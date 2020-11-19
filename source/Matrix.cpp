@@ -1,6 +1,13 @@
+#define _DEBUG_RAND
+
 #include "Matrix.h"
 #include <iomanip>
+#include <random>
+#include <chrono>
 
+//-============ Initialization of rng =============-
+unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+std::mt19937 generator(seed);
 
 //-============ Node =============-
 
@@ -84,6 +91,19 @@ Matrix::Matrix(unsigned int rows, unsigned int columns) : rows(rows), columns(co
 	for (int i = 0; i < rows * columns; i++) {
 		data.addNode(0);
 	}
+}
+
+Matrix Matrix::MatrixRandom(const unsigned &rows, const unsigned &columns){
+	Matrix result(rows, columns);
+	#ifdef _DEBUG_RAND
+	std::cout << "Generator instantiated with min: " << generator.min() << "\t max: " << generator.max() << std::endl;
+	#endif
+	for(unsigned i = 0; i < rows; i++){
+		for(unsigned j = 0; j < columns; j++){
+			result[i][j] = generator();
+		}
+	}
+	return result;
 }
 
 void Matrix::transpose() {

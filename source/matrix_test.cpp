@@ -76,5 +76,14 @@ int main() {
 	std::cout << "Matrix::compare(m7, m9): " << Matrix::compare(m7, m9) << std::endl;
 	std::cout << "m7 == m9: " << (m7 == m9) << std::endl;
 
+	std::cout << "Generating two random matrices with size 1000x5" << std::endl;
+	Matrix m10 = Matrix::MatrixRandom(100, 100);
+	Matrix m11 = Matrix::MatrixRandom(100, 100);
+
+	std::cout << "m10 == m11: " << Matrix::compare(m10, m11) << std::endl;
+	std::cout << m10 << "\t" << m11 << std::endl;
+
+	std::cin.get();
+
 	return 0;
 }

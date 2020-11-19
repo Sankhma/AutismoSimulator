@@ -103,6 +103,11 @@ struct Matrix {
     Matrix(unsigned int rows = 1, unsigned int columns = 1);
 
 	/**
+	 * 
+	 */
+	static Matrix MatrixRandom(const unsigned &rows = 1, const unsigned &columns = 1);
+
+	/**
 	 * Flip the matrix over its diagonal.
 	 * (Switch the row and column indices.)
 	 */
