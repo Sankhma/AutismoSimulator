@@ -150,9 +150,19 @@ struct Matrix {
 	 */
 	Node<T>& get(const unsigned &index) const;
 
+	/**
+	 * Compares two matrices and return a boolean value.
+	 * 
+	 * @param matrix1 First matrix to compare.
+	 * @param matrix2 Second matrix to compare.
+	 * @returns Boolean value, true for equal matrices, false otherwise.
+	 */
+	static bool compare(const Matrix &matrix1, const Matrix &matrix2);
+
 	Matrix operator+(const Matrix &) const;
 	Matrix operator-(const Matrix &) const;
 	Matrix operator*(const Matrix &) const;
+	bool operator==(const Matrix &) const;
 
 	// double& operator()(const unsigned int&, const unsigned int&) const;
 
@@ -176,15 +186,38 @@ struct Matrix {
 	}
 };
 
-
 // Note: class with augement of only 1 column wide, might change that later on
-class AugmentedMatrix{
+struct AugmentedMatrix{
 	Matrix<double> main;
 	Matrix<double> augment;
 
-public:
+	/**
+	 * Constructor for the AugmentedMatrix class.
+	 * 
+	 * @param main The main Matrix of and Augmented Matrix (lhs).
+	 * @param augment The augmented Matrix (rhs).
+	 * @returns A new AugmentedMatrix object.
+	 * @throws std::runtime_error Thrown if main Matrix has more columns than rows, or no. of rows in main and augment doesn't match.
+	 */
 	AugmentedMatrix(const Matrix<double>& main, const Matrix<double>& augment);
+
+	/**
+	 * Constructor for the AugmentedMatrix class.
+	 * 
+	 * @param size The size of main Matrix, i.e. creates nxn main Matrix and nx1 augment Matrix.
+	 * @returns A new AugmentedMatrix object.
+	 */
 	AugmentedMatrix(const unsigned int& size);
+
+
+	/**
+	 * Constructor for the AugmentedMatrix class.
+	 * 
+	 * @param rows The amount of the rows in main and augment Matrix.
+	 * @param columns The amount of the columns in the main Matrix.
+	 * @returns A new AugmentedMatrix object.
+	 * @throws std::runtime_error Thrown if no. of columns is bigger than no. of rows.
+	 */
 	AugmentedMatrix(const unsigned int& rows, const unsigned int& columns);
 
 	/**

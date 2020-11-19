@@ -179,6 +179,19 @@ Node<T>& Matrix<T>::get(const unsigned &index) const {
 }
 
 template<typename T>
+bool Matrix<T>::compare(const Matrix<T> &matrix1, const Matrix<T> &matrix2){
+	if(matrix1.columns != matrix2.columns || matrix1.rows != matrix2.rows)
+		return false;
+	for(unsigned i = 0; i < matrix1.rows; i++){
+		for(unsigned j = 0; j < matrix1.columns; j++){
+			if(matrix1[i][j] != matrix2[i][j])
+				return false;
+		}
+	}
+	return true;
+}
+
+template<typename T>
 Matrix<T> Matrix<T>::operator+(const Matrix& other) const{
 	if(this->rows != other.rows || this->columns != other.columns) throw std::runtime_error("The Matrices are not of the same size. Addition is not defined.");
 	Matrix<T> result = Matrix<T>(this->rows, this->columns);
@@ -214,6 +227,11 @@ Matrix<T> Matrix<T>::operator*(const Matrix &other) const {
 		}
 	}
 	return result;
+}
+
+template<typename T>
+bool Matrix<T>::operator==(const Matrix<T> &matrix) const {
+	return Matrix<T>::compare(*this, matrix);
 }
 
 // double& Matrix::operator()(const int& row, const int& col) const{
