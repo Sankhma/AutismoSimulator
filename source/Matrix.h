@@ -3,6 +3,7 @@
 #include <iostream>
 #include <iomanip>
 
+
 template<typename T>
 /**
  * Data structure used to store a value and a pointer to the next Node.
@@ -101,10 +102,11 @@ struct Matrix {
 	 * 
 	 * @param rows The amount of the rows of the new matrix.
 	 * @param columns The amount of the columns of the new matrix.
+	 * @param rand Optional, false by default. If true, each cell will be given a random value.
 	 * @returns A new Matrix object.
 	 * @throws std::runtime_error Thrown if any of the dimensions provided is invalid.
 	 */
-    Matrix(unsigned int rows = 1, unsigned int columns = 1);
+    Matrix(unsigned int rows = 1, unsigned int columns = 1, bool rand = false);
 
 	/**
 	 * 
@@ -183,7 +185,7 @@ struct Matrix {
 		os << '[';
 		for (unsigned i = matrix.rows * matrix.columns; i > 0; i--) {
 			if (i % matrix.columns == 0 && i != matrix.rows * matrix.columns) os << ' ';
-			os << std::setw(8) << node->value;
+			os << std::setw(12) << node->value;
 			node = node->next;
 			os << ((i != 1) ? (((i - 1) % matrix.columns == 0) ? "\n" : ", ") : "]");
 		}

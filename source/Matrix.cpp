@@ -10,6 +10,19 @@
 unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
 std::mt19937 generator(seed);
 
+//-============ Initialization of rng2 =============-
+uint64_t shuffle_table[4];
+uint64_t next(void)
+{
+    uint64_t s1 = shuffle_table[0];
+    uint64_t s0 = shuffle_table[1];
+    uint64_t result = s0 + s1;
+    shuffle_table[0] = s0;
+    s1 ^= s1 << 23;
+    shuffle_table[1] = s1 ^ s0 ^ (s1 >> 18) ^ (s0 >> 5);
+    return result;
+}
+
 //-============ Node =============-
 
 template<typename T>
@@ -94,15 +107,16 @@ T& Node<T>::operator[](const unsigned &index) {
 //-============ Matrix =============-
 
 template<typename T>
-Matrix<T>::Matrix(unsigned int rows, unsigned int columns) : rows(rows), columns(columns), data(LinkedList<T>()) {
+Matrix<T>::Matrix(unsigned int rows, unsigned int columns, bool rand) : rows(rows), columns(columns), data(LinkedList<T>()) {
 	if (rows < 1 || columns < 1) {
 		throw std::runtime_error("Invalid size. Each dimension must be a positive integer. Values provided: " + std::to_string(rows) + ", " + std::to_string(columns) + ".\n");
 	}
 	for (int i = 0; i < rows * columns; i++) {
-		data.addNode(T());
+		data.addNode(rand ? generator() : T());
 	}
 }
 
+template<>
 Matrix<unsigned> Matrix<unsigned>::MatrixRandom(const unsigned &rows, const unsigned &columns){
 	Matrix<unsigned> result(rows, columns);
 	#ifdef _DEBUG_RAND
