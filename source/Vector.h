@@ -13,11 +13,16 @@ struct Vector2{
 	/**
 	 * Constructor for the Vector2 class.
 	 * 
-	 * @oaram x,y Values to store.
+	 * @param x, y Values to store.
 	 * @returns A new Vector2 object.
 	 */
     Vector2(const T &x=0, const T &y=0)
 		: x(x), y(y) {};
+
+	template<typename X>
+	operator Vector2<X>() const {
+		return {static_cast<X>(this->x), static_cast<X>(this->y)};
+	}
 
     Vector2<T> operator+(const Vector2<T> &rhs) const {
 		return {this->x + rhs.x, this->y + rhs.y};
@@ -39,7 +44,6 @@ struct Vector2{
 		return *this;
 	};
 
-	// TODO: Add template specializations for =* operator
     Vector2<T>& operator*=(const T &lambda) {
 		this->x *= lambda;
 		this->y *= lambda;
@@ -51,11 +55,10 @@ struct Vector2{
 		return os;
 	};
 
-	// TODO: specializations for dot product needed
 	/**
 	 * Calculate the dot product of two Vector2 objects.
 	 * 
-	 * @param v1,v2 Vectors.
+	 * @param vector1, vector2 Vectors.
 	 * @returns The dot product of the vectors provided.
 	 */
     static double dot(const Vector2<T> &vector1, const Vector2<T> &vector2) {
@@ -65,7 +68,7 @@ struct Vector2{
 	/**
 	 * Calculate the angle between two Vector2 objects.
 	 * 
-	 * @param v1,v2 Vectors.
+	 * @param vector1, vector2 Vectors.
 	 * @returns The angle between the vectors provided (in radians).
 	 */
     static double angle(const Vector2<T> &vector1, const Vector2<T> &vector2) {
@@ -106,11 +109,16 @@ struct Vector3{
 	/**
 	 * Constructor for the Vector3 class.
 	 * 
-	 * @param x,y,z Values to store.
+	 * @param x, y, z Values to store.
 	 * @returns A new Vector3 object.
 	 */
     Vector3(T x=0., T y=0., T z=0.)
 		: x(x), y(y), z(z) {};
+
+	template<typename X>
+	operator Vector3<X>() const {
+		return {static_cast<X>(this->x), static_cast<X>(this->y), static_cast<X>(this->z)};
+	}
 
     Vector3<T> operator+(const Vector3<T> &rhs) const {
 		return {this->x + rhs.x, this->y + rhs.y, this->z + rhs.z};
@@ -149,7 +157,7 @@ struct Vector3{
 	/**
 	 * Calculate the dot product of two Vector3 objects.
 	 * 
-	 * @param v1,v2 Vectors.
+	 * @param vector1, vector2 Vectors.
 	 * @returns The dot product of the vectors provided.
 	 */
     static double dot(const Vector3<T> &vector1, const Vector3<T> &vector2) {
@@ -159,8 +167,8 @@ struct Vector3{
 	/**
 	 * Calculate the cross product of two Vector2 objects.
 	 * 
-	 * @param v1,v2 Vectors.
-	 * @returns The dot product of the vectors provided.
+	 * @param vector1, vector2 Vectors.
+	 * @returns The cross product of the vectors provided.
 	 */
     static Vector3<T> cross(const Vector3<T> &vector1, const Vector3<T> &vector2) {
 		Vector3<T> result;
@@ -173,7 +181,7 @@ struct Vector3{
 	/**
 	 * Calculate the between two Vector2 objects.
 	 * 
-	 * @param v1,v2 Vectors.
+	 * @param vector1, vector2 Vectors.
 	 * @returns The angle between the vectors provided (in radians).
 	 */
     static double angle(const Vector3<T> &vector1, const Vector3<T> &vector2) {
