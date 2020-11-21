@@ -3,6 +3,7 @@
 #include <iostream>
 #include <cmath>
 #include <stdarg.h>
+#include <vector>
 
 #include "Vector.h"
 #include "Matrix.h"
@@ -14,7 +15,7 @@ template<typename T>
  */
 class Bezier{
     unsigned char m_points = 0;  // Amount of points.
-	Matrix<T> points;
+	std::vector<T> points;
     // std::vector<Vector2> points; // Vector of points.
 
 public:
@@ -52,7 +53,7 @@ public:
 	 * @param t The timestep in the range [0, 1].
 	 * @returns A 2-dimensional point on the curve.
 	 */
-    static T GenerateVertex(const Bezier<T> &bezier, const double &t);
+    static T GenerateVertex(Bezier<T> &bezier, const double &t);
 
 	/**
 	 * Generate a vertex for the given curve and timestep, using a less efficient method.

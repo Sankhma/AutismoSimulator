@@ -37,7 +37,7 @@ void Bezier<T>::addPoint(const T& Point){
 }
 
 template<typename T>
-T Bezier<T>::GenerateVertex(const Bezier<T> &bezier, const double &t){
+T Bezier<T>::GenerateVertex(Bezier<T> &bezier, const double &t){
     T result = T();
 
     if(bezier.m_points == 2){
@@ -103,3 +103,6 @@ template<typename T>
 unsigned char Bezier<T>::getSize() const {
 	return m_points;
 }
+
+template class Bezier<Vector2<double>>;
+template class Bezier<Vector3<double>>;
