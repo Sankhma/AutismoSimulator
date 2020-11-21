@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <chrono>
+
 #include "Matrix.h"
 #include "Vector.h"
 
@@ -107,7 +108,7 @@ int main() {
 	Matrix<unsigned> m10;
 	for (int i = 0; i < 10; i++) {
 		std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
-		m10 = Matrix<unsigned>(1000, 1000, true);
+		m10 = Matrix<unsigned>(1000, 1000, false, 9);
 		std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
 		std::cout << "Time difference = " << std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count() << "[µs]\n";
 	}
