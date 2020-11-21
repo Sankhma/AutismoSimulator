@@ -3,6 +3,8 @@
 #include<iostream>
 #include<cmath>
 
+// wtf GitHub
+
 template<typename T>
 /**
  * Data structure for storing two values.
