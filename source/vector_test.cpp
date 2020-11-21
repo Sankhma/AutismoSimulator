@@ -50,26 +50,4 @@ int main(){
 
 		std::cout << "Angle between a and b : " << Vector2::angle(a, b) << std::endl;
 	}
-
-	std::cout << "-============ Vector2 conversion test =============-" << std::endl;
-	{
-		Vector2<double> dbl_vector(3.14, 5.8);
-		std::cout << dbl_vector << std::endl;
-		std::cout << static_cast<Vector2<int>>(dbl_vector) << std::endl;
-		Vector2<int> int_vector(1, 4);
-		std::cout << int_vector << std::endl;
-		std::cout << static_cast<Vector2<double>>(int_vector) + dbl_vector << std::endl;
-		std::cout << Vector2<double>::dot(int_vector, dbl_vector) << std::endl;
-	}
-
-	std::cout << "-============ Vector3 conversion test =============-" << std::endl;
-	{
-		Vector3<double> dbl_vector(36.14, 54.8, 12.2);
-		std::cout << dbl_vector << std::endl;
-		std::cout << static_cast<Vector3<int>>(dbl_vector) << std::endl;
-		Vector3<int> int_vector(120, 4, 89);
-		std::cout << int_vector << std::endl;
-		std::cout << static_cast<Vector3<double>>(int_vector) + dbl_vector << std::endl;
-		std::cout << Vector3<double>::dot(int_vector, dbl_vector) << std::endl;
-	}
 }
