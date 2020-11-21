@@ -5,6 +5,7 @@
 #include <iomanip>
 
 #include "Vector.h"
+#include "RNG.h"
 
 template<typename T>
 /**
@@ -146,10 +147,17 @@ struct Matrix {
     Matrix(unsigned rows = 1, unsigned columns = 1, bool rand = false, T value = 0) {
 		if(rows < 1 || columns < 1)
 			throw std::runtime_error("Invalid size. Each dimension must be a positive integer. Values provided: " + std::to_string(rows) + ", " + std::to_string(columns) + ".\n");
-		if(!rand) {
-			//TODO: generate random number up to value if value > 0
-		} else {
-			data.addNode(value);
+		for(unsigned i = 0; i < rows * columns; i++){
+			if(rand) {
+				//TODO: generate random number up to value if value > 0
+				if(value > 0) {
+					data.addNode(RNG::generate_xoshiro() % value);
+				} else {
+					data.addNode(RNG::generate_xoshiro());
+				}
+			} else {
+				data.addNode(value);
+			}
 		}
 	};
 

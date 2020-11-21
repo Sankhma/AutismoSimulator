@@ -108,9 +108,10 @@ int main() {
 	Matrix<unsigned> m10;
 	for (int i = 0; i < 10; i++) {
 		std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
-		m10 = Matrix<unsigned>(1000, 1000, false, 9);
+		m10 = Matrix<unsigned>(10000, 10000, true, 9);
 		std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
 		std::cout << "Time difference = " << std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count() << "[µs]\n";
+		// std::cout << m10 << std::endl;
 	}
 	// Matrix<unsigned> m11 = Matrix<unsigned>::MatrixRandom(100, 100);
 
