@@ -7,6 +7,8 @@
 #include "Math.h"
 #include "Track.h"
 
+// okay keep your secrets then
+
 int main(){
     int len = 10;
     int width = 3;

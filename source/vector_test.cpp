@@ -3,6 +3,8 @@
 
 #include "Vector.h"
 
+// nice meme GH
+
 int main(){
 	std::cout << "-============ Vector3 test =============-" << std::endl;
 	{

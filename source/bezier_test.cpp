@@ -3,6 +3,8 @@
 #include "Vector.h"
 #include "Bezier.h"
 
+// I guess this is also fcked
+
 int main(){
     std::cout << "-============ Bezier2 test =============-" << std::endl;
 	{
