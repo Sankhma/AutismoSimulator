@@ -118,8 +118,8 @@ int main() {
 	// std::cout << "m10 == m11: " << Matrix<unsigned>::compare(m10, m11) << std::endl;
 	// std::cout << m10 << "\t" << m11 << std::endl;
 
-	Matrix<Vector3> m123 = Matrix<Vector3>(2, 2);
-	Matrix<Vector3> m124 = Matrix<Vector3>(2, 2);
+	Matrix<Vector3<double>> m123 = Matrix<Vector3<double>>(2, 2);
+	Matrix<Vector3<double>> m124 = Matrix<Vector3<double>>(2, 2);
 
 	std::cout << m123 * m124 << '\n';
 
