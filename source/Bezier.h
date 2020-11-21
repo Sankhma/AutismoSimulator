@@ -10,6 +10,7 @@
 #include "Math.h"
 
 template<typename T>
+// TODO: change documentation
 /**
  * Data structure for storing points making up a 2-dimensional Bezier curve.
  */

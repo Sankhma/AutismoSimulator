@@ -104,5 +104,6 @@ unsigned char Bezier<T>::getSize() const {
 	return m_points;
 }
 
+// TODO: make so it works with all types!!
 template class Bezier<Vector2<double>>;
 template class Bezier<Vector3<double>>;
