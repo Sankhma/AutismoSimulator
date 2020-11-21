@@ -4,12 +4,12 @@
 #include "Vector.h"
 
 int main(){
-    Vector2 vec0 = Vector2(1, 2);
-    Vector2 vec1 = Vector2(2, 3);
-    Vector2 vec2 = Vector2(7, 4);
-    Vector2 vec3 = Vector2(133, 1123);
+    Vector2<double> vec0 = Vector2<double>(1, 2);
+    Vector2<double> vec1 = Vector2<double>(2, 3);
+    Vector2<double> vec2 = Vector2<double>(7, 4);
+    Vector2<double> vec3 = Vector2<double>(133, 1123);
 
-    std::vector<Vector2> points;
+    std::vector<Vector2<double>> points;
     points.push_back(vec0);
     points.push_back(vec1);
     points.push_back(vec2);
@@ -26,8 +26,8 @@ int main(){
         Bezier2::GenerateVertex(bez0, t);
     }
 
-    bez0.addPoint(Vector2(1, 2));
-    bez0.addPoint(Vector2(420, 69));
+    bez0.addPoint(Vector2<double>(1, 2));
+    bez0.addPoint(Vector2<double>(420, 69));
 
     std::cout << "Added 2 more points, Bezier2 has 6 points in total" << std::endl;
     for(int i=0; i <= steps; i++){
@@ -43,8 +43,8 @@ int main(){
         Bezier2::GenerateVertex(bez1, t);
     }
 
-    bez1.addPoint(Vector2(1, 2));
-    bez1.addPoint(Vector2(1, 10));
+    bez1.addPoint(Vector2<double>(1, 2));
+    bez1.addPoint(Vector2<double>(1, 10));
 
     std::cout << "Added 2 more point, Bezier2 has 5 points in total" << std::endl;
 

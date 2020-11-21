@@ -9,7 +9,7 @@
  */
 class Bezier2{
     unsigned char m_points = 0;  // Amount of points.
-    std::vector<Vector2> points; // Vector of points.
+    std::vector<Vector2<double>> points; // Vector of points.
 
 public:
 	/**
@@ -18,7 +18,7 @@ public:
 	 * @param points A vector of points - Vector2 objects.
 	 * @returns A new Bezier2 object.
 	 */
-    Bezier2(const std::vector<Vector2>& points);
+    Bezier2(const std::vector<Vector2<double>>& points);
 
 	/**
 	 * Constructor for the Bezier2 class.
@@ -35,7 +35,7 @@ public:
 	 * 
 	 * @param Point The point to be added.
 	 */
-    void addPoint(const Vector2& Point);
+    void addPoint(const Vector2<double>& Point);
 
 	/**
 	 * Generate a vertex for the given curve and timestep.
@@ -44,7 +44,7 @@ public:
 	 * @param t The timestep in the range [0, 1].
 	 * @returns A 2-dimensional point on the curve.
 	 */
-    static Vector2 GenerateVertex(const Bezier2& bezier2, const double& t);
+    static Vector2<double> GenerateVertex(const Bezier2& bezier2, const double& t);
 
 	/**
 	 * Generate a vertex for the given curve and timestep, using a less efficient method.
@@ -52,7 +52,7 @@ public:
 	 * @overload
 	 * @see GenerateVertex
 	 */
-    static Vector2 GenerateVertex2(const Bezier2 &, const double &);
+    static Vector2<double> GenerateVertex2(const Bezier2 &, const double &);
 
 	/**
 	 * Get amount of points making up the curve.
@@ -67,7 +67,7 @@ public:
  */
 class Bezier3 {
     unsigned char m_points = 0;  // Amount of points.
-    std::vector<Vector3> points; // Vector of points.
+    std::vector<Vector3<double>> points; // Vector of points.
 
 public:
 	/**
@@ -76,7 +76,7 @@ public:
 	 * @param points A vector of points - Vector3 objects.
 	 * @returns A new Bezier3 object.
 	 */
-    Bezier3(const std::vector<Vector3> &points);
+    Bezier3(const std::vector<Vector3<double>> &points);
 
 	/**
 	 * Constructor for the Bezier3 class.
@@ -93,7 +93,7 @@ public:
 	 * 
 	 * @param Point The point to be added.
 	 */
-    void addPoint(const Vector3 &point);
+    void addPoint(const Vector3<double> &point);
 
 	/**
 	 * Generate a vertex for the given curve and timestep.
@@ -102,7 +102,7 @@ public:
 	 * @param t The timestep in the range [0, 1].
 	 * @returns A 3-dimensional point on the curve.
 	 */
-    static Vector3 GenerateVertex(const Bezier3 &bezier3, const double &t);
+    static Vector3<double> GenerateVertex(const Bezier3 &bezier3, const double &t);
 
 	/**
 	 * Get amount of points making up the curve.

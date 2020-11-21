@@ -11,7 +11,7 @@
 #include "Vector.h"
 #include "Math.h"
 
-Bezier2::Bezier2(const std::vector<Vector2>& points){
+Bezier2::Bezier2(const std::vector<Vector2<double>>& points){
     for(unsigned char i=0; i < points.size(); i++){
         this->addPoint(points[i]);
     }
@@ -21,7 +21,7 @@ Bezier2::Bezier2(const unsigned char& size, ...){
     va_list vl;
     va_start(vl, size);
     for(unsigned char i=0; i < size; i++){
-        Vector2* ptr = va_arg(vl, Vector2*);
+        Vector2<double>* ptr = va_arg(vl, Vector2<double>*);
         #ifdef _DEBUG_VA
             std::cout << "Vector2 @ " << ptr << " with value " << *ptr << std::endl;
         #endif
@@ -30,7 +30,7 @@ Bezier2::Bezier2(const unsigned char& size, ...){
     va_end(vl);
 }
 
-void Bezier2::addPoint(const Vector2& Point){
+void Bezier2::addPoint(const Vector2<double>& Point){
     this->points.push_back(Point);
     #ifdef _DEBUG_ADD
         std::cout << "Added point: " << Point << std::endl;
@@ -38,19 +38,19 @@ void Bezier2::addPoint(const Vector2& Point){
     this->m_points++;
 }
 
-Vector2 Bezier2::GenerateVertex(const Bezier2& bezier2, const double& t){
-    Vector2 result = Vector2();
+Vector2<double> Bezier2::GenerateVertex(const Bezier2& bezier2, const double& t){
+    Vector2<double> result = Vector2<double>();
 
     if(bezier2.m_points == 2){
         result = bezier2.points[1] * t + bezier2.points[0] * (1 - t);
     }
 
     if(bezier2.m_points == 3){
-        result = bezier2.points[2] * std::pow(t, 2) + bezier2.points[1] * 2 * t * (1 - t) + bezier2.points[0] * std::pow((1 - t), 2);
+        result = bezier2.points[2] * std::pow(t, 2) + bezier2.points[1] * 2. * t * (1 - t) + bezier2.points[0] * std::pow((1 - t), 2);
     }
 
     if(bezier2.m_points == 4){
-        result = bezier2.points[3] * std::pow(t, 3) + bezier2.points[2] * 3 * (1 - t) * std::pow(t, 2) + bezier2.points[1] * 3 * std::pow((1 - t), 2) * t + bezier2.points[0] * std::pow((1 - t), 3);
+        result = bezier2.points[3] * std::pow(t, 3) + bezier2.points[2] * 3. * (1 - t) * std::pow(t, 2) + bezier2.points[1] * 3. * std::pow((1 - t), 2) * t + bezier2.points[0] * std::pow((1 - t), 3);
     }
 
     if(bezier2.m_points > 4){
@@ -66,8 +66,8 @@ Vector2 Bezier2::GenerateVertex(const Bezier2& bezier2, const double& t){
     return result;
 }
 
-Vector2 Bezier2::GenerateVertex2(const Bezier2 &bezier2, const double &t) {
-	std::vector<Vector2> points = bezier2.points;
+Vector2<double> Bezier2::GenerateVertex2(const Bezier2 &bezier2, const double &t) {
+	std::vector<Vector2<double>> points = bezier2.points;
 	#ifdef _DEBUG_GV2
 		std::cout << "Generating a vertex with:\n\tvertices: ";
 		for (const Vector2 &v : points) std::cout << v << ", ";
@@ -105,7 +105,7 @@ unsigned char Bezier2::getSize() const {
 
 // -=============== Bezier3 ==================-
 
-Bezier3::Bezier3(const std::vector<Vector3> &points) {
+Bezier3::Bezier3(const std::vector<Vector3<double>> &points) {
 	for (unsigned char i = 0; i < points.size(); i++) {
 		addPoint(points[i]);
 	}
@@ -115,7 +115,7 @@ Bezier3::Bezier3(const unsigned char &size, ...) {
 	va_list vl;
 	va_start(vl, size);
 	for (unsigned char i = 0; i < size; i++) {
-		Vector3 *ptr = va_arg(vl, Vector3*);
+		Vector3<double> *ptr = va_arg(vl, Vector3<double>*);
 		#ifdef _DEBUG_VA
 			std::cout << "Vector3 @ " << ptr << " with value " << *ptr << '\n';
 		#endif
@@ -124,7 +124,7 @@ Bezier3::Bezier3(const unsigned char &size, ...) {
 	va_end(vl);
 }
 
-void Bezier3::addPoint(const Vector3 &point) {
+void Bezier3::addPoint(const Vector3<double> &point) {
 	points.push_back(point);
 	#ifdef _DEBUG_ADD
 		std::cout << "Added point: " << point << '\n';
@@ -132,8 +132,8 @@ void Bezier3::addPoint(const Vector3 &point) {
 	m_points++;
 }
 
-Vector3 Bezier3::GenerateVertex(const Bezier3 &bezier3, const double &t){
-    Vector3 result = Vector3();
+Vector3<double> Bezier3::GenerateVertex(const Bezier3 &bezier3, const double &t){
+    Vector3<double> result = Vector3<double>();
 
 	switch (bezier3.m_points) {
 		case 2:
