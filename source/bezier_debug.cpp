@@ -3,6 +3,8 @@
 #include "Bezier.h"
 #include "Vector.h"
 
+// and this
+
 int main(){
     Vector2<double> vec0 = Vector2<double>(1, 2);
     Vector2<double> vec1 = Vector2<double>(2, 3);
