@@ -11,22 +11,51 @@ struct Vector2{
 	/**
 	 * Constructor for the Vector2 class.
 	 * 
-	 * @oaram x,y Values to store.
+	 * @param x, y Values to store.
 	 * @returns A new Vector2 object.
 	 */
     Vector2(const double &x=0, const double &y=0);
 
-    Vector2 operator+(const Vector2&) const;
-    Vector2 operator-(const Vector2&) const;
-    Vector2& operator+=(const Vector2&);
-    Vector2& operator-=(const Vector2&);
-    Vector2& operator*=(const double&);
-    friend std::ostream& operator<<(std::ostream&, const Vector2&);
+	template<typename X>
+	operator Vector2<X>() const {
+		return {static_cast<X>(this->x), static_cast<X>(this->y)};
+	}
+
+    Vector2<T> operator+(const Vector2<T> &rhs) const {
+		return {this->x + rhs.x, this->y + rhs.y};
+	};
+
+    Vector2<T> operator-(const Vector2<T> &rhs) const {
+		return {this->x - rhs.x, this->y - rhs.y};
+	};
+
+    Vector2<T>& operator+=(const Vector2<T> &rhs) {
+		this->x += rhs.x;
+		this->y += rhs.y;
+		return *this;
+	};
+
+    Vector2<T>& operator-=(const Vector2<T> &rhs) {
+		this->x -= rhs.x;
+		this->y -= rhs.y;
+		return *this;
+	};
+
+    Vector2<T>& operator*=(const T &lambda) {
+		this->x *= lambda;
+		this->y *= lambda;
+		return *this;
+	};
+
+    friend std::ostream& operator<<(std::ostream &os, const Vector2<T> &vector) {
+		os << "[" << vector.x << ", " << vector.y << "]";
+		return os;
+	};
 
 	/**
 	 * Calculate the dot product of two Vector2 objects.
 	 * 
-	 * @param v1,v2 Vectors.
+	 * @param vector1, vector2 Vectors.
 	 * @returns The dot product of the vectors provided.
 	 */
     static double dot(const Vector2& v1, const Vector2& v2);
@@ -34,7 +63,7 @@ struct Vector2{
 	/**
 	 * Calculate the angle between two Vector2 objects.
 	 * 
-	 * @param v1,v2 Vectors.
+	 * @param vector1, vector2 Vectors.
 	 * @returns The angle between the vectors provided (in radians).
 	 */
     static double angle(const Vector2& v1, const Vector2& v2);
@@ -54,22 +83,54 @@ struct Vector3{
 	/**
 	 * Constructor for the Vector3 class.
 	 * 
-	 * @param x,y,z Values to store.
+	 * @param x, y, z Values to store.
 	 * @returns A new Vector3 object.
 	 */
     Vector3(double x=0., double y=0., double z=0.);
 
-    Vector3 operator+(const Vector3&) const;
-    Vector3 operator-(const Vector3&) const;
-    Vector3& operator+=(const Vector3&);
-    Vector3& operator-=(const Vector3&);
-    Vector3& operator*=(const double&);
-    friend std::ostream& operator<<(std::ostream&, const Vector3&);
+	template<typename X>
+	operator Vector3<X>() const {
+		return {static_cast<X>(this->x), static_cast<X>(this->y), static_cast<X>(this->z)};
+	}
+
+    Vector3<T> operator+(const Vector3<T> &rhs) const {
+		return {this->x + rhs.x, this->y + rhs.y, this->z + rhs.z};
+	};
+
+    Vector3<T> operator-(const Vector3<T> &rhs) const {
+		return {this->x - rhs.x, this->y - rhs.y, this->z - rhs.z};
+	};
+
+    Vector3<T>& operator+=(const Vector3<T> &rhs) {
+		this->x += rhs.x;
+		this->y += rhs.y;
+		this->z += rhs.z;
+		return *this;
+	};
+
+    Vector3<T>& operator-=(const Vector3<T> &rhs) {
+		this->x -= rhs.x;
+		this->y -= rhs.y;
+		this->z -= rhs.z;
+		return *this;
+	};
+
+    Vector3<T>& operator*=(const T &lambda) {
+		this->x *= lambda;
+		this->y *= lambda;
+		this->z *= lambda;
+		return *this;
+	};
+
+    friend std::ostream& operator<<(std::ostream &os, const Vector3<T> &vector) {
+		os << "[" << vector.x << ", " << vector.y << ", " << vector.z << "]";
+		return os;
+	};
 
 	/**
 	 * Calculate the dot product of two Vector3 objects.
 	 * 
-	 * @param v1,v2 Vectors.
+	 * @param vector1, vector2 Vectors.
 	 * @returns The dot product of the vectors provided.
 	 */
     static double dot(const Vector3& vec1, const Vector3& vec2);
@@ -77,15 +138,15 @@ struct Vector3{
 	/**
 	 * Calculate the cross product of two Vector2 objects.
 	 * 
-	 * @param v1,v2 Vectors.
-	 * @returns The dot product of the vectors provided.
+	 * @param vector1, vector2 Vectors.
+	 * @returns The cross product of the vectors provided.
 	 */
     static Vector3 cross(const Vector3& vec1, const Vector3& vec2);
 
 	/**
 	 * Calculate the between two Vector2 objects.
 	 * 
-	 * @param v1,v2 Vectors.
+	 * @param vector1, vector2 Vectors.
 	 * @returns The angle between the vectors provided (in radians).
 	 */
     static double angle(const Vector3& vec1, const Vector3& vec2);
