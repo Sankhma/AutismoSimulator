@@ -80,13 +80,13 @@ struct Vector2{
 };
 
 // TODO: can they be inside the function but declared static??
-template<typename T>
-Vector2<T> operator*(const Vector2<T> &vector, const T lambda) {
+template<typename T, typename U>
+Vector2<T> operator*(const Vector2<T> &vector, const U lambda) {
 	return {vector.x * lambda, vector.y * lambda};
 };
 
-template<typename T>
-Vector2<T> operator*(const T lambda, const Vector2<T> &vector) {
+template<typename T, typename U>
+Vector2<T> operator*(const U lambda, const Vector2<T> &vector) {
 	return vector * lambda;
 };
 
@@ -192,8 +192,8 @@ struct Vector3{
 	};
 };
 
-template<typename T>
-Vector3<T> operator*(const Vector3<T> &lhs, const double lambda) {
+template<typename T, typename U>
+Vector3<T> operator*(const Vector3<T> &lhs, const U lambda) {
 	Vector3<T> result;
 	result.x = lhs.x * lambda;
 	result.y = lhs.y * lambda;
@@ -201,8 +201,8 @@ Vector3<T> operator*(const Vector3<T> &lhs, const double lambda) {
 	return result;
 };
 
-template<typename T>
-Vector3<T> operator*(const double lambda, const Vector3<T> &rhs) {
+template<typename T, typename U>
+Vector3<T> operator*(const U lambda, const Vector3<T> &rhs) {
 	return rhs * lambda;
 };
 
