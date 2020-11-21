@@ -39,9 +39,9 @@ int main(){
     std::cout << "-============ Bezier template test =============-" << std::endl;
 	{
 		int steps = 10;
-		Bezier<Vector3<char>> b1 = Bezier<Vector3<char>>({{0, 0}, {1, 3}, {4, 3}, {3, 0}});
+		Bezier<Vector3> b1 = Bezier<Vector3>({{0, 0}, {1, 3}, {4, 3}, {3, 0}});
 		for (int i = 0; i <= steps; i++) {
-			Bezier<Vector3<char>>::GenerateVertex(b1, (double)i / steps);
+			Bezier<Vector3>::GenerateVertex(b1, (double)i / steps);
 		}
 	}
 }

@@ -13,8 +13,8 @@ int main(){
 
     std::string name = "siemano";
 
-    Vector3<double> vec1 = {69, 420, 69};
-    Vector3<double> vec2 = {420, 69, 420};
+    Vector3 vec1 = {69, 420, 69};
+    Vector3 vec2 = {420, 69, 420};
 
     Bezier3 bez = Bezier3(3, &vec1, &vec2, &vec1);
 
