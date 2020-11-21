@@ -104,19 +104,24 @@ int main() {
 	// std::cout << "Matrix<double>::compare(m7, m9): " << Matrix<double>::compare(m7, m9) << std::endl;
 	// std::cout << "m7 == m9: " << (m7 == m9) << std::endl;
 
-	std::cout << "Generating 10 random matrices with size 1000x1000...\n";
-	Matrix<unsigned> m10;
-	for (int i = 0; i < 10; i++) {
-		std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
-		m10 = Matrix<unsigned>(10000, 10000, true, 9);
-		std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
-		std::cout << "Time difference = " << std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count() << "[µs]\n";
-		// std::cout << m10 << std::endl;
-	}
+	// std::cout << "Generating 10 random matrices with size 1000x1000...\n";
+	// Matrix<unsigned> m10;
+	// for (int i = 0; i < 10; i++) {
+	// 	std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
+	// 	m10 = Matrix<unsigned>(10000, 10000, true, 9);
+	// 	std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
+	// 	std::cout << "Time difference = " << std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count() << "[µs]\n";
+	// 	// std::cout << m10 << std::endl;
+	// }
 	// Matrix<unsigned> m11 = Matrix<unsigned>::MatrixRandom(100, 100);
 
 	// std::cout << "m10 == m11: " << Matrix<unsigned>::compare(m10, m11) << std::endl;
 	// std::cout << m10 << "\t" << m11 << std::endl;
+
+	Matrix<Vector3> m123 = Matrix<Vector3>(2, 2);
+	Matrix<Vector3> m124 = Matrix<Vector3>(2, 2);
+
+	std::cout << m123 * m124 << '\n';
 
 	std::cin.get();
 

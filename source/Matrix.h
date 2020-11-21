@@ -133,7 +133,7 @@ template<typename T>
 struct Matrix {
     unsigned int rows;    // The amount of rows of the matrix.
     unsigned int columns; // The amount of columns of the matrix.
-	LinkedList<T> data;      // Data stored in the matrix.
+	LinkedList<T> data;   // Data stored in the matrix.
 
 	/**
 	 * Constructor for the Matrix class.
@@ -144,7 +144,7 @@ struct Matrix {
 	 * @returns A new Matrix object.
 	 * @throws std::runtime_error Thrown if any of the dimensions provided is invalid.
 	 */
-    Matrix(unsigned rows = 1, unsigned columns = 1, bool rand = false, T value = 0) {
+    Matrix(unsigned rows = 1, unsigned columns = 1, bool rand = false, unsigned value = 0) {
 		if(rows < 1 || columns < 1)
 			throw std::runtime_error("Invalid size. Each dimension must be a positive integer. Values provided: " + std::to_string(rows) + ", " + std::to_string(columns) + ".\n");
 		for(unsigned i = 0; i < rows * columns; i++){
@@ -159,7 +159,7 @@ struct Matrix {
 				data.addNode(value);
 			}
 		}
-	};
+	}
 
 	/**
 	 * 
@@ -182,7 +182,7 @@ struct Matrix {
 		unsigned temp = rows;
 		rows = columns;
 		columns = temp;
-	};
+	}
 
 	/**
 	 * Multiply the chosen row by the given value.
@@ -202,7 +202,7 @@ struct Matrix {
 			node->value *= lambda;
 			node = node->next;
 		}
-	};
+	}
 
 	/**
 	 * Shuffle two chosen rows of the matrix.
@@ -234,7 +234,7 @@ struct Matrix {
 			a4->next = b4;
 		}
 		data.tail = &get(rows * columns - 1);
-	};
+	}
 
 	/**
 	 * Adds one row to another one.
@@ -254,7 +254,7 @@ struct Matrix {
 			sourceNode = sourceNode->next;
 			targetNode = targetNode->next;
 		}
-	};
+	}
 
 	/**
 	 * Get the n-th cell of the matrix.
@@ -271,7 +271,7 @@ struct Matrix {
 			node = node->next;
 		}
 		return *node;
-	};
+	}
 
 	/**
 	 * Compares two matrices and return a boolean value.
@@ -290,7 +290,7 @@ struct Matrix {
 			}
 		}
 		return true;
-	};
+	}
 
 	Matrix<T> operator+(const Matrix<T> &rhs) const {
 		if(this->rows != rhs.rows || this->columns != rhs.columns)
@@ -302,7 +302,7 @@ struct Matrix {
 			}
 		}
 		return result;
-	};
+	}
 
 	Matrix<T> operator-(const Matrix<T> &rhs) const {
 		if(this->rows != rhs.rows || this->columns != rhs.columns)
@@ -314,7 +314,7 @@ struct Matrix {
 			}
 		}
 		return result;
-	};
+	}
 
 	Matrix<T> operator*(const Matrix<T> &rhs) const {
 		if(this->columns != rhs.rows)
@@ -328,20 +328,11 @@ struct Matrix {
 			}
 		}
 		return result;
-	};
-
-	// template<> class Matrix<Vector2> operator*(const Matrix<Vector2> &rhs) const {
-	// 	throw std::runtime_error("Multiplying matrices of Vector2 is not defined.");
-	// };
-
-	// template<>
-	// Matrix<Vector3> operator*(const Matrix<Vector3> &rhs) const {
-	// 	throw std::runtime_error("Multiplying matrices of Vector3 is not defined.");
-	// }
+	}
 
 	bool operator==(const Matrix<T> &rhs) const {
 		return Matrix<T>::compare(*this, rhs);
-	};
+	}
 
 	// double& operator()(const unsigned int&, const unsigned int&) const;
 
@@ -357,7 +348,7 @@ struct Matrix {
 			cell = cell->next;
 		}
 		return *cell;
-	};
+	}
 
 	// TODO: does that have to be friend???
 	friend std::ostream& operator<<(std::ostream &os, const Matrix<T> &matrix) {
@@ -372,6 +363,16 @@ struct Matrix {
 		return os;
 	}
 };
+
+template<>
+Matrix<Vector2> Matrix<Vector2>::operator*(const Matrix<Vector2> &rhs) const {
+	throw std::runtime_error("Multiplying matrices of Vector2 is not defined.");
+}
+
+template<>
+Matrix<Vector3> Matrix<Vector3>::operator*(const Matrix<Vector3> &rhs) const {
+	throw std::runtime_error("Multiplying matrices of Vector3 is not defined.");
+}
 
 template<typename T>
 // Note: class with augement of only 1 column wide, might change that later on
