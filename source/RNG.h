@@ -1,4 +1,6 @@
 #pragma once
+#ifndef RNG
+#define RNG
 
 #include <random>
 #include <chrono>
@@ -23,3 +25,5 @@ namespace RNG {
         return mt_generator();
     }
 };
+
+#endif
