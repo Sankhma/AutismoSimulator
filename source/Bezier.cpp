@@ -3,13 +3,7 @@
 #define _DEBUG_VERT
 // #define _DEBUG_GV2
 
-#include <iostream>
-#include <cmath>
-#include <stdarg.h>
-
 #include "Bezier.h"
-#include "Vector.h"
-#include "Math.h"
 
 template<typename T>
 Bezier<T>::Bezier(const std::vector<T> &points){
@@ -46,22 +40,22 @@ template<typename T>
 T Bezier<T>::GenerateVertex(const Bezier<T> &bezier, const double &t){
     T result = T();
 
-    if(bezier2.m_points == 2){
-        result = bezier2.points[1] * t + bezier2.points[0] * (1 - t);
+    if(bezier.m_points == 2){
+        result = bezier.points[1] * t + bezier.points[0] * (1 - t);
     }
 
-    if(bezier2.m_points == 3){
-        result = bezier2.points[2] * std::pow(t, 2) + bezier2.points[1] * 2 * t * (1 - t) + bezier2.points[0] * std::pow((1 - t), 2);
+    if(bezier.m_points == 3){
+        result = bezier.points[2] * std::pow(t, 2) + bezier.points[1] * 2 * t * (1 - t) + bezier.points[0] * std::pow((1 - t), 2);
     }
 
-    if(bezier2.m_points == 4){
-        result = bezier2.points[3] * std::pow(t, 3) + bezier2.points[2] * 3 * (1 - t) * std::pow(t, 2) + bezier2.points[1] * 3 * std::pow((1 - t), 2) * t + bezier2.points[0] * std::pow((1 - t), 3);
+    if(bezier.m_points == 4){
+        result = bezier.points[3] * std::pow(t, 3) + bezier.points[2] * 3 * (1 - t) * std::pow(t, 2) + bezier.points[1] * 3 * std::pow((1 - t), 2) * t + bezier.points[0] * std::pow((1 - t), 3);
     }
 
-    if(bezier2.m_points > 4){
-        for(unsigned char i = 0; i <= bezier2.m_points - 1; i++){
-            double bbp = Math::binomial(bezier2.m_points - 1, i) * std::pow((1 - t), bezier2.m_points - 1 - i) * pow(t, i);
-            result += bezier2.points[i] * bbp;
+    if(bezier.m_points > 4){
+        for(unsigned char i = 0; i <= bezier.m_points - 1; i++){
+            double bbp = Math::binomial(bezier.m_points - 1, i) * std::pow((1 - t), bezier.m_points - 1 - i) * pow(t, i);
+            result += bezier.points[i] * bbp;
         }
     }
 
@@ -73,13 +67,13 @@ T Bezier<T>::GenerateVertex(const Bezier<T> &bezier, const double &t){
 
 template<typename T>
 T Bezier<T>::GenerateVertex2(const Bezier<T> &bezier, const double &t) {
-	std::vector<T> points = bezier2.points;
+	std::vector<T> points = bezier.points;
 	#ifdef _DEBUG_GV2
 		std::cout << "Generating a vertex with:\n\tvertices: ";
 		for (const T &v : points) std::cout << v << ", ";
 		std::cout << "\n\tt = " << t << "\nEntering the outer loop...\n\n";
 	#endif
-	for (unsigned char i = 0; i < bezier2.m_points - 1; i++) {
+	for (unsigned char i = 0; i < bezier.m_points - 1; i++) {
 		#ifdef _DEBUG_GV2
 			std::cout << "Iteration " << i << "...\nEntering the inner loop...\n\n";
 		#endif

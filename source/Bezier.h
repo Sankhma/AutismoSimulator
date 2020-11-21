@@ -1,7 +1,12 @@
 #pragma once
 
+#include <iostream>
+#include <cmath>
+#include <stdarg.h>
+
 #include "Vector.h"
 #include "Matrix.h"
+#include "Math.h"
 
 template<typename T>
 /**
