@@ -106,4 +106,9 @@ unsigned char Bezier<T>::getSize() const {
 
 // TODO: make so it works with all types!!
 template class Bezier<Vector2<double>>;
+template class Bezier<Vector2<float>>;
+template class Bezier<Vector2<int>>;
+
 template class Bezier<Vector3<double>>;
+template class Bezier<Vector3<float>>;
+template class Bezier<Vector3<int>>;
