@@ -2,6 +2,7 @@
 
 #include<iostream>
 #include<cmath>
+#include<string>
 
 // wtf GitHub
 
@@ -77,6 +78,14 @@ struct Vector2{
 		double result = std::acos(Vector2<T>::dot(vector1, vector2) / std::sqrt(Vector2<T>::dot(vector1, vector1) * Vector2<T>::dot(vector2, vector2)));
 		return result;
 	};
+
+	/**
+	 * Return a type name for this class.
+	 * @returns string "Vector2".
+	 */
+	std::string name() {
+		return "Vector2";
+	}
 };
 
 // TODO: can they be inside the function but declared static??
@@ -190,6 +199,14 @@ struct Vector3{
 	   double result = std::acos(Vector3<T>::dot(vector1, vector2) / std::sqrt(Vector3<T>::dot(vector1, vector1) * Vector3<T>::dot(vector2, vector2)));
 	   return result;	
 	};
+
+	/**
+	 * Return a type name for this class.
+	 * @returns string "Vector3".
+	 */
+	std::string name() {
+		return "Vector3";
+	}
 };
 
 template<typename T, typename U>
