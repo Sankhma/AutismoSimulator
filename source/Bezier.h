@@ -10,25 +10,29 @@
 #include "Math.h"
 
 template<typename T>
-// TODO: change documentation
 /**
- * Data structure for storing points making up a 2-dimensional Bezier curve.
+ * Data structure for storing points making up a 2-dimensional or 3-dimensional Bezier curve.
  */
 class Bezier{
     unsigned char m_points = 0;  // Amount of points.
+	// TODO: chnage std::vector to Matrix or LinkedList
 	std::vector<T> points;
-    // std::vector<Vector2> points; // Vector of points.
+	
 
 public:
 	/**
-	 * Constructor for the Bezier2 class.
+	 * Constructor for the Bezier class.
 	 * 
-	 * @param points A vector of points - Vector2 objects.
-	 * @returns A new Bezier2 object.
+	 * @param points A vector of points - Vector2 or Vector3 objects.
+	 * @returns A new Bezier object.
 	 */
     Bezier(const std::vector<T> &points);
 
 	// TODO: add constructor for Matrix<T>
+	/**
+	 * 
+	 */
+	Bezier(const Matrix<T> &points);
 
 	/**
 	 * Constructor for the Bezier2 class.

@@ -13,6 +13,21 @@ Bezier<T>::Bezier(const std::vector<T> &points){
 }
 
 template<typename T>
+Bezier<T>::Bezier(const Matrix<T> &points) {
+    if(points.columns != 1 || points.rows != 1)
+        throw std::runtime_error("The provided matrix shoul have only one clomuns/row.");
+    if(points.columns == 1) {
+        for(unsigned char i = 0; i < points.rows; i++) {
+            this->addPoint(points[i][0]);
+        }
+    } else {
+        for(unsigned char i = 0; i < points.columns; i++) {
+            this->addPoint(points[0][i]);
+        }
+    }
+}
+
+template<typename T>
 Bezier<T>::Bezier(const unsigned char &size, ...){
     va_list vl;
     va_start(vl, size);
