@@ -34,8 +34,11 @@ Bezier<T>::Bezier(const unsigned char &size, ...){
     for(unsigned char i = 0; i < size; i++){
         T* ptr = va_arg(vl, T*);
         #ifdef _DEBUG_VA
-			// TODO: add type detecting??
-            std::cout << "Vector2 or Vector3 @ " << ptr << " with value " << *ptr << std::endl;
+            if(ptr->name() == "Vector2") {
+                std::cout << "Vector2 @ " << ptr << " with value " << *ptr << std::endl;
+            } else {
+                std::cout << "Vector3 @ " << ptr << " with value " << *ptr << std::endl;
+            }
         #endif
         this->addPoint(*ptr);
     }

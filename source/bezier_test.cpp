@@ -37,4 +37,8 @@ int main(){
             std::cout << "[ " << temp.x << ", " << temp.y << " ]" << std::endl;
         }
 	}
+
+    Vector3<int> siema;
+
+    std::cout << siema.name() <<std::endl;
 }
