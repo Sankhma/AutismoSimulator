@@ -144,7 +144,9 @@ struct Matrix {
 	 * @returns A new Matrix object.
 	 * @throws std::runtime_error Thrown if any of the dimensions provided is invalid.
 	 */
-    Matrix(unsigned rows = 1, unsigned columns = 1, bool rand = false, unsigned value = 0) {
+    Matrix(unsigned rows = 1, unsigned columns = 1, bool rand = false, unsigned value = 0)
+		: rows(rows), columns(columns), data(LinkedList<T>()) // who tf forgot about the initializer list while moving everything to the header file?????????
+		{
 		if(rows < 1 || columns < 1)
 			throw std::runtime_error("Invalid size. Each dimension must be a positive integer. Values provided: " + std::to_string(rows) + ", " + std::to_string(columns) + ".\n");
 		for(unsigned i = 0; i < rows * columns; i++){
@@ -257,6 +259,28 @@ struct Matrix {
 	}
 
 	/**
+	 * Compare two Matrix rows.
+	 * 
+	 * @param index1 The index of the first row.
+	 * @param index2 The index of the second row.
+	 * @returns `true` if the row values are equal, `false` otherwise.
+	 * @throws std::out_of_range Thrown if any of the indices provided is invalid.
+	 */
+	bool compareRows(const unsigned &index1, const unsigned &index2) {
+		if(index1 >= rows || index2 >= rows)
+			throw std::out_of_range("Element out of range. Expected non-negative integer indices lesser than " + std::to_string(rows) + ". Indices provided: " + std::to_string(index1) + ", " + std::to_string(index2) + ".\n");
+		Node<T> *n1 = &(*this)[index1],
+		        *n2 = &(*this)[index2];
+		for (unsigned i = 0; i < columns; i++) {
+			if (n1->value != n2->value)
+				return false;
+			n1 = n1->next;
+			n2 = n2->next;
+		}
+		return true;
+	}
+
+	/**
 	 * Get the n-th cell of the matrix.
 	 * 
 	 * @param index Index of the desired cell (left to right, top to bottom).
@@ -356,7 +380,7 @@ struct Matrix {
 		os << '[';
 		for (unsigned i = matrix.rows * matrix.columns; i > 0; i--) {
 			if (i % matrix.columns == 0 && i != matrix.rows * matrix.columns) os << ' ';
-			os << std::setw(12) << node->value;
+			os << std::setw(8) << node->value;
 			node = node->next;
 			os << ((i != 1) ? (((i - 1) % matrix.columns == 0) ? "\n" : ", ") : "]");
 		}
@@ -364,15 +388,16 @@ struct Matrix {
 	}
 };
 
-template<>
-Matrix<Vector2> Matrix<Vector2>::operator*(const Matrix<Vector2> &rhs) const {
-	throw std::runtime_error("Multiplying matrices of Vector2 is not defined.");
-}
+// h
+// template<>
+// Matrix<Vector2> Matrix<Vector2>::operator*(const Matrix<Vector2> &rhs) const {
+// 	throw std::runtime_error("Multiplying matrices of Vector2 is not defined.");
+// }
 
-template<>
-Matrix<Vector3> Matrix<Vector3>::operator*(const Matrix<Vector3> &rhs) const {
-	throw std::runtime_error("Multiplying matrices of Vector3 is not defined.");
-}
+// template<>
+// Matrix<Vector3> Matrix<Vector3>::operator*(const Matrix<Vector3> &rhs) const {
+// 	throw std::runtime_error("Multiplying matrices of Vector3 is not defined.");
+// }
 
 template<typename T>
 // Note: class with augement of only 1 column wide, might change that later on

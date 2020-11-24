@@ -120,10 +120,23 @@ int main() {
 	// std::cout << "m10 == m11: " << Matrix<unsigned>::compare(m10, m11) << std::endl;
 	// std::cout << m10 << "\t" << m11 << std::endl;
 
-	Matrix<Vector3<double>> m123 = Matrix<Vector3<double>>(2, 2);
-	Matrix<Vector3<double>> m124 = Matrix<Vector3<double>>(2, 2);
+	// Matrix<Vector3<double>> m123 = Matrix<Vector3<double>>(2, 2);
+	// Matrix<Vector3<double>> m124 = Matrix<Vector3<double>>(2, 2);
 
-	std::cout << m123 * m124 << '\n';
+	// std::cout << m123 * m124 << '\n';
+
+	{
+		auto m = Matrix<double>(4, 3);
+		m[0][0] = 1, m[0][1] = 2, m[0][2] = 3,
+		m[1][0] = 4, m[1][1] = 5, m[1][2] = 6,
+		m[2][0] = 1, m[2][1] = 2, m[2][2] = 3,
+		m[3][0] = 4, m[3][1] = 5, m[3][2] = 7;
+
+		std::cout << "m:\n" << m;
+		std::cout << "\nComparing rows 0 and 1: " << m.compareRows(0, 1);
+		std::cout << "\nComparing rows 0 and 2: " << m.compareRows(0, 2);
+		std::cout << "\nComparing rows 1 and 3: " << m.compareRows(1, 3);
+	}
 
 	std::cin.get();
 
