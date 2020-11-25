@@ -2,8 +2,10 @@
 
 #include <string>
 #include <vector>
+#include <iostream>
 
 #include "Bezier.h"
+#include "Vector.h"
 
 template <typename T>
 struct Track{

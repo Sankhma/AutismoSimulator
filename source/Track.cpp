@@ -35,7 +35,14 @@ template<typename T>
 Track<T> Track<T>::GenerateTrack(std::string &type) {
     std::cout << "Generating Track: " << std::endl;
     if(type == "Vector2") {
+        double x, y;
+        std::string temp;
+        Bezier<Vector2<double>> bezier;
+
         std::cout << "\tstarting at the origin (0, 0)" << std::endl;;
+        std::cout << "\tspecify the next point: ";
+        std::cin >> x, y;
+
         
     }
 }
