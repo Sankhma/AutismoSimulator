@@ -26,7 +26,7 @@ public:
      * @param width Width of a circuit default 0.
      * @returns A new Track object.
      */
-    Track(const std::vector<T> &curves, const std::string &name = default_track_name(), const double &length = 0., const double &width = 0.);
+    Track(const std::vector<T> &curves, const std::string &name = default_track_name(), const double &length = 1., const double &width = 0.);
 
     //TODO: variadic template for multiple options
     // Track(const std::vector<Bezier2> &curves, ...);
@@ -35,4 +35,6 @@ public:
      * Prints name, length, width, and number of Bezier curves it is defined by. Ends with a new line.
      */
     void Print();
+
+    static Track<T> GenerateTrack(std::string &type);
 };
