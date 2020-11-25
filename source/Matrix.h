@@ -401,16 +401,15 @@ struct Matrix {
 	}
 };
 
-// h
-// template<>
-// Matrix<Vector2> Matrix<Vector2>::operator*(const Matrix<Vector2> &rhs) const {
-// 	throw std::runtime_error("Multiplying matrices of Vector2 is not defined.");
-// }
+template<typename T>
+Matrix<Vector2<T>> operator*(const Matrix<Vector2<T>> &rhs) {
+	throw std::runtime_error("Multiplying matrices of Vector2 is not defined.");
+}
 
-// template<>
-// Matrix<Vector3> Matrix<Vector3>::operator*(const Matrix<Vector3> &rhs) const {
-// 	throw std::runtime_error("Multiplying matrices of Vector3 is not defined.");
-// }
+template<typename T>
+Matrix<Vector3<T>> operator*(const Matrix<Vector3<T>> &rhs) {
+	throw std::runtime_error("Multiplying matrices of Vector3 is not defined.");
+}
 
 template<typename T>
 // Note: class with augement of only 1 column wide, might change that later on
