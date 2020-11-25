@@ -4,8 +4,6 @@
 #include<cmath>
 #include<string>
 
-// wtf GitHub
-
 template<typename T>
 /**
  * Data structure for storing two values.
@@ -85,6 +83,24 @@ struct Vector2{
 	 */
 	std::string name() {
 		return "Vector2";
+	}
+
+	/**
+	 * Calculate the distance between two points.
+	 * @param vector1, vector2 Vector2 objects containing coordinates of the points.
+	 * @returns the distance between two points(double).
+	 */
+	static double Distance(const Vector2<T> &vector1, const Vector2<T> &vector2) {
+		return abs(sqrt(dot(vector1 - vector2, vector1 - vector2)));
+	}
+
+	/**
+	 * Calculate the projection of given Vector2 in parmeters along the Vector2 object.
+	 * @param vector Vector2 to be projected.
+	 * @returns projected Vector2.
+	 */
+	Vector2<T> Project(const Vector2<T> &vector) {
+		return (*this) * dot(*this, vector) / dot(*this, *this);
 	}
 };
 
@@ -206,6 +222,24 @@ struct Vector3{
 	 */
 	std::string name() {
 		return "Vector3";
+	}
+
+	/**
+	 * Calculate the distance between two points.
+	 * @param vector1, vector2 Vector3 objects containing coordinates of the points.
+	 * @returns the distance between two points(double).
+	 */
+	static double Distance(const Vector3<T> &vector1, const Vector3<T> &vector2) {
+		return abs(sqrt(dot(vector1 - vector2, vector1 - vector2)));
+	}
+
+	/**
+	 * Calculate the projection of given Vector3 in parmeters along the Vector3 object.
+	 * @param vector Vector3 to be projected.
+	 * @returns projected Vector3.
+	 */
+	Vector3<T> Project(const Vector3<T> &vector) {
+		return (*this) * dot(*this, vector) / dot(*this, *this);
 	}
 };
 
