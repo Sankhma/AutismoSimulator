@@ -15,8 +15,7 @@ template<typename T>
  */
 class Bezier{
     unsigned char m_points = 0;  // Amount of points.
-	// TODO: change std::vector to Matrix or LinkedList
-	std::vector<T> points;
+	LinkedList<T> points;        // Points.
 	
 
 public:
@@ -27,6 +26,15 @@ public:
 	 * @returns A new Bezier object.
 	 */
     Bezier(const std::vector<T> &points);
+
+	/**
+	 * Constructor for the Bezier class.
+	 * 
+	 * @param points A LinkedList of points - Vector2 or Vector3 objects.
+	 * @returns A new Bezier object.
+	 * @overlaod
+	 */
+    Bezier(const LinkedList<T> &points);
 
 	/**
 	 * Constructor for the Bezier class.

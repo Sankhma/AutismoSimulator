@@ -13,6 +13,15 @@ Bezier<T>::Bezier(const std::vector<T> &points){
 }
 
 template<typename T>
+Bezier<T>::Bezier(const LinkedList<T> &points) {
+	Node<T> *n = points.head;
+	while (n != nullptr) {
+		this->points.add(n->value);
+		n = n->next;
+	}
+}
+
+template<typename T>
 Bezier<T>::Bezier(const Matrix<T> &points) {
     if(points.columns != 1 || points.rows != 1)
         throw std::runtime_error("The provided matrix shoul have only one clomuns/row.");
@@ -47,7 +56,7 @@ Bezier<T>::Bezier(const unsigned char &size, ...){
 
 template<typename T>
 void Bezier<T>::addPoint(const T& Point){
-    this->points.push_back(Point);
+	this->points.add(Point);
     #ifdef _DEBUG_ADD
         std::cout << "Added point: " << Point << std::endl;
     #endif
@@ -83,39 +92,39 @@ T Bezier<T>::GenerateVertex(Bezier<T> &bezier, const double &t){
     return result;
 }
 
-template<typename T>
-T Bezier<T>::GenerateVertex2(const Bezier<T> &bezier, const double &t) {
-	std::vector<T> points = bezier.points;
-	#ifdef _DEBUG_GV2
-		std::cout << "Generating a vertex with:\n\tvertices: ";
-		for (const T &v : points) std::cout << v << ", ";
-		std::cout << "\n\tt = " << t << "\nEntering the outer loop...\n\n";
-	#endif
-	for (unsigned char i = 0; i < bezier.m_points - 1; i++) {
-		#ifdef _DEBUG_GV2
-			std::cout << "Iteration " << i << "...\nEntering the inner loop...\n\n";
-		#endif
-		for (unsigned char j = 0; j < points.size() - 1; j++) {
-			#ifdef _DEBUG_GV2
-				std::cout << "(" << points[j + 1] << " - " << points[j] << ") * " << t;
-			#endif
-			points[j] += (points[j + 1] - points[j]) * t;
-			#ifdef _DEBUG_GV2
-				std::cout << " = " << points[j] << '\n';
-			#endif
-		}
-		#ifdef _DEBUG_GV2
-			std::cout << "\nFinished the inner loop.\n";
-			std::cout << "Removing the last vertex in points...\n\n";
-		#endif
-		points.pop_back();
-	}
-	#ifdef _DEBUG_GV2
-		std::cout << "Finished the outer loop.\n";
-	#endif
-	std::cout << "Generated vertex @ " << points[0] << '\n';
-	return points[0];
-}
+// template<typename T>
+// T Bezier<T>::GenerateVertex2(const Bezier<T> &bezier, const double &t) {
+// 	std::vector<T> points = bezier.points;
+// 	#ifdef _DEBUG_GV2
+// 		std::cout << "Generating a vertex with:\n\tvertices: ";
+// 		for (const T &v : points) std::cout << v << ", ";
+// 		std::cout << "\n\tt = " << t << "\nEntering the outer loop...\n\n";
+// 	#endif
+// 	for (unsigned char i = 0; i < bezier.m_points - 1; i++) {
+// 		#ifdef _DEBUG_GV2
+// 			std::cout << "Iteration " << i << "...\nEntering the inner loop...\n\n";
+// 		#endif
+// 		for (unsigned char j = 0; j < points.size() - 1; j++) {
+// 			#ifdef _DEBUG_GV2
+// 				std::cout << "(" << points[j + 1] << " - " << points[j] << ") * " << t;
+// 			#endif
+// 			points[j] += (points[j + 1] - points[j]) * t;
+// 			#ifdef _DEBUG_GV2
+// 				std::cout << " = " << points[j] << '\n';
+// 			#endif
+// 		}
+// 		#ifdef _DEBUG_GV2
+// 			std::cout << "\nFinished the inner loop.\n";
+// 			std::cout << "Removing the last vertex in points...\n\n";
+// 		#endif
+// 		points.pop_back();
+// 	}
+// 	#ifdef _DEBUG_GV2
+// 		std::cout << "Finished the outer loop.\n";
+// 	#endif
+// 	std::cout << "Generated vertex @ " << points[0] << '\n';
+// 	return points[0];
+// }
 
 template<typename T>
 unsigned char Bezier<T>::getSize() const {
