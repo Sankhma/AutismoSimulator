@@ -75,13 +75,26 @@ struct LinkedList {
 	LinkedList() : head(nullptr), tail(nullptr) {};
 
 	/**
+	 * Destructor for the LinkedList class.
+	 */
+	~LinkedList() {
+		Node<T> *current = head;
+		while (current != nullptr) {
+			delete current;
+			// std::cout << "Destroyed " << current->value << ".\n";
+			current = current->next;
+		}
+	}
+
+	/**
 	 * Add a node to the end of the list.
 	 * 
 	 * @param value Value to be added to the list.
 	 */
-	void addNode(const T &value) {
+	void add(const T &value) {
 		//Potential memory leak???
 		Node<T> *tmp = new Node<T>(value);
+		// std::cout << "Allocated " << value << " on heap.\n";
 		if(head == nullptr) {
 			head = tail = tmp;
 		} else{
@@ -98,7 +111,7 @@ struct LinkedList {
 		LinkedList<T> newList = LinkedList<T>();
 		Node<T> *node = head;
 		while(node != nullptr) {
-			newList.addNode(node->value);
+			newList.add(node->value);
 			node = node->next;
 		}
 		return newList;
@@ -153,12 +166,12 @@ struct Matrix {
 			if(rand) {
 				//TODO: generate random number up to value if value > 0
 				if(value > 0) {
-					data.addNode(RNG::generate_xoshiro() % value);
+					data.add(RNG::generate_xoshiro() % value);
 				} else {
-					data.addNode(RNG::generate_xoshiro());
+					data.add(RNG::generate_xoshiro());
 				}
 			} else {
-				data.addNode(value);
+				data.add(value);
 			}
 		}
 	}
