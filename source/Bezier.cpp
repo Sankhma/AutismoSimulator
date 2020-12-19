@@ -131,6 +131,14 @@ unsigned char Bezier<T>::getSize() const {
 	return m_points;
 }
 
+template<typename T>
+void Bezier<T>::clear() {
+    this->m_points = 0;
+    LinkedList<T> temp = this->points;
+    this->points = LinkedList<T>;
+    delete(temp);
+}
+
 // TODO: make so it works with all types!!
 template class Bezier<Vector2<double>>;
 template class Bezier<Vector2<float>>;

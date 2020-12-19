@@ -84,4 +84,10 @@ public:
 	 * @returns The amount of points.
 	 */
 	unsigned char getSize() const;
+
+	/**
+	 * Clears the Bezier. 
+	 * 
+	 */
+	void clear();
 };
